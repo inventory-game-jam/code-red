@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="add089fa-e03d-4c14-afec-310b8ae4db31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ktlint-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/ChevyFonts.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/ChevyFontsPackedPlugin.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/CodeRedPack.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/FontMetadata.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Fonts.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredFonts.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredSprites.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Sprites.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/handler/GeneralPlayerHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/Files.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/IGJAPI.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/TextBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/CustomItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/Bullet.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/Gun.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/CraftBukkitExtensions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
         <option value="Kotlin Object" />
       </list>
     </option>
@@ -45,10 +34,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2l3IjCbHxmyJZ43h7b7mh5jJ8wW" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -58,8 +47,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build code-red.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
-    "Gradle.code-red [runDevBundleServer].executor": "Run",
+    "Gradle.code-red [runDevBundleServer].executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
@@ -128,7 +118,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1724402469076</updated>
-      <workItem from="1724402473305" duration="5660000" />
+      <workItem from="1724402473305" duration="8857000" />
+      <workItem from="1724414069255" duration="7813000" />
     </task>
     <servers />
   </component>
