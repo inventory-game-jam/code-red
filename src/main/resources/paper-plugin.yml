@@ -1,0 +1,5 @@
+name: example-plugin
+version: 0.0.0
+api-version: 1.21.1
+main: net.radstevee.papertemplate.ExamplePlugin
+bootstrapper: net.radstevee.papertemplate.ExamplePluginBootstrapper
