@@ -43,15 +43,6 @@ abstract class CustomItem : Listener {
         }
     }
 
-    @EventHandler
-    fun onItemDrop(event: PlayerDropItemEvent) {
-        if (item.itemMeta.persistentDataContainer.get(TYPE_KEY, PersistentDataType.STRING)
-                ?.let { NamespacedKey.fromString(it) } == key
-        ) {
-            event.isCancelled = true
-        }
-    }
-
     companion object {
         val TYPE_KEY = NamespacedKey("codered", "custom_item_type")
     }
