@@ -1,5 +1,6 @@
-name: example-plugin
+name: code-red
+authors: [ignpurple, radstevee, AndreasMelone]
 version: 0.0.0
 api-version: 1.21.1
-main: net.radstevee.papertemplate.ExamplePlugin
-bootstrapper: net.radstevee.papertemplate.ExamplePluginBootstrapper
+main: com.github.inventorygamejam.codered.CodeRed
+bootstrapper: com.github.inventorygamejam.codered.CodeRedBootstrapper

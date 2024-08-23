@@ -5,7 +5,7 @@ plugins {
     id("com.gradleup.shadow") version "8.3.0"
 }
 
-group = "net.radstevee"
+group = "com.github.inventorygamejam"
 version = "0.0.0"
 
 repositories {
