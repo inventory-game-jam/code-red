@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="add089fa-e03d-4c14-afec-310b8ae4db31" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ktlint-plugin.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ktlint-plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/ChevyFonts.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/ChevyFontsPackedPlugin.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/CodeRedPack.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/FontMetadata.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Fonts.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredFonts.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredSprites.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Sprites.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/handler/GeneralPlayerHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/Files.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/IGJAPI.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/TextBuilder.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/net/radstevee/papertemplate/ExamplePlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/net/radstevee/papertemplate/ExamplePluginBootstrapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRedBoostrapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/paper-plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/paper-plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +33,15 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Object" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -32,18 +50,29 @@
   "associatedIndex": 1
 }]]></component>
   <component name="ProjectId" id="2l3IjCbHxmyJZ43h7b7mh5jJ8wW" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.code-red [runDevBundleServer].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.ktlint-plugin",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -52,6 +81,16 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/run/plugins" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle runDevBundleServer" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="code-red [runDevBundleServer]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -89,11 +128,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1724402469076</updated>
-      <workItem from="1724402473305" duration="55000" />
+      <workItem from="1724402473305" duration="5660000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

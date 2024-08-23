@@ -3,12 +3,14 @@ plugins {
     id("io.papermc.paperweight.userdev") version "1.7.1"
     id("xyz.jpenilla.run-paper") version "2.3.1"
     id("com.gradleup.shadow") version "8.3.0"
+    kotlin("plugin.serialization") version "2.0.0"
 }
 
 group = "com.github.inventorygamejam"
 version = "0.0.0"
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
 }
@@ -20,6 +22,11 @@ dependencies {
     implementation("org.incendo:cloud-kotlin-extensions:2.0.0-SNAPSHOT")
     implementation("org.incendo:cloud-kotlin-coroutines:2.0.0-SNAPSHOT")
     implementation("org.apache.commons:commons-lang3:3.0")
+    implementation("net.radstevee.packed:packed-core:0.5.0")
+    implementation("net.radstevee.packed:packed-negative-spaces:0.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    implementation("io.ktor:ktor-client-core:2.3.12")
+    implementation("io.ktor:ktor-client-cio:2.3.12")
 
     paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 }
