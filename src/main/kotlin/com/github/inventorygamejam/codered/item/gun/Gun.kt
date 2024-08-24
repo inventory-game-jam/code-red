@@ -1,7 +1,9 @@
 package com.github.inventorygamejam.codered.item.gun
 
+import com.github.inventorygamejam.codered.gui.Sounds
 import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredSprites
 import com.github.inventorygamejam.codered.item.CustomItem
+import com.github.inventorygamejam.codered.util.buildText
 import net.kyori.adventure.text.Component.empty
 import net.kyori.adventure.title.Title.Times.times
 import net.kyori.adventure.title.Title.title
@@ -18,6 +20,10 @@ object Gun : CustomItem() {
     override var item = ItemStack.of(Material.GOLDEN_SHOVEL).apply {
         editMeta { meta ->
             meta.setCustomModelData(1)
+            meta.displayName(buildText {
+                append("Gun")
+                notItalic()
+            })
         }
     }
     override val key = NamespacedKey("codered", "gun")
@@ -54,11 +60,19 @@ object Gun : CustomItem() {
     }
 
     override fun onRightClick(player: Player) {
+        val ammo = AmmoManager[player]
+        if (ammo <= 0) {
+            return
+        }
+
         val origin = player.location.add(0.0, 1.4, 0.0)
 
         player.setCooldown(Material.GOLDEN_SHOVEL, 10)
 
         FireballBullet(player, origin, player.eyeLocation.direction)
+        player.playSound(Sounds.GUN_FIRE)
+
+        AmmoManager[player] = ammo - 1
     }
 
     init {

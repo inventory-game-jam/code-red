@@ -1,7 +1,9 @@
 package com.github.inventorygamejam.codered
 
+import com.github.inventorygamejam.codered.gui.AmmoOverlay
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack
 import com.github.inventorygamejam.codered.handler.GeneralPlayerHandler
+import com.github.inventorygamejam.codered.item.gun.AmmoManager
 import com.github.inventorygamejam.codered.item.gun.BulletHandler
 import com.github.inventorygamejam.codered.item.gun.Gun
 import com.github.shynixn.mccoroutine.bukkit.SuspendingJavaPlugin
@@ -37,6 +39,9 @@ object CodeRed : SuspendingJavaPlugin() {
                 player.inventory.addItem(Gun.item)
             }
         }
+
+        AmmoManager
+        AmmoOverlay
     }
 
     override suspend fun onDisableAsync() {}
