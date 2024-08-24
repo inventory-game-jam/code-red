@@ -250,6 +250,10 @@ class TextBuilder {
     fun build() = componentBuilder.build()
 
     fun children() = componentBuilder.children()
+
+    fun removeTextShadow() = apply {
+        color("#4e5c24")
+    }
 }
 
 inline fun buildText(block: TextBuilder.() -> Unit) = TextBuilder().apply(block).build()

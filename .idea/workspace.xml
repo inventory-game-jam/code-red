@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="add089fa-e03d-4c14-afec-310b8ae4db31" name="Changes" comment="" />
+    <list default="true" id="add089fa-e03d-4c14-afec-310b8ae4db31" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/BulletHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/FireballBullet.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/team/PlayerClass.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/team/PlayerClasses.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Fonts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Fonts.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredFonts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredFonts.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredSprites.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredSprites.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Sprites.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Sprites.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/CustomItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/CustomItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/Bullet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/Bullet.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/Gun.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/Gun.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/TextBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/TextBuilder.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,8 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
         <option value="Kotlin Object" />
       </list>
     </option>
@@ -28,7 +43,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
+  &quot;customColor&quot;: &quot;dd6777ff&quot;,
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2l3IjCbHxmyJZ43h7b7mh5jJ8wW" />
@@ -114,6 +129,10 @@
       <workItem from="1724402473305" duration="8857000" />
       <workItem from="1724414069255" duration="7813000" />
       <workItem from="1724422749819" duration="5008000" />
+      <workItem from="1724442129210" duration="3302000" />
+      <workItem from="1724449283251" duration="1080000" />
+      <workItem from="1724450434498" duration="4184000" />
+      <workItem from="1724457976786" duration="1866000" />
     </task>
     <servers />
   </component>
