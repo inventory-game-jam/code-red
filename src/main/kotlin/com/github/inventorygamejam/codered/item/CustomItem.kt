@@ -43,7 +43,6 @@ abstract class CustomItem : Listener {
         ) {
             if (event.action in listOf(Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK)) onRightClick(player)
             else onLeftClick(player)
-            event.isCancelled = true
         }
     }
 
