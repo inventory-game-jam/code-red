@@ -28,11 +28,11 @@ object BulletHandler : Listener {
 
         event.hitEntity?.let { entity ->
             val livingEntity = entity as? LivingEntity ?: return@let
-            livingEntity.damage(5.0)
+            livingEntity.damage(15.0)
         }
 
         event.isCancelled = true
-        Bukkit.getScheduler().runTaskLater(CodeRed, Runnable { event.entity.remove() }, 20L)
+        Bukkit.getScheduler().runTaskLater(CodeRed, Runnable { event.entity.remove() }, 40L)
     }
 
     @EventHandler
