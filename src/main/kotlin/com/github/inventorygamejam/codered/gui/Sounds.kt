@@ -7,5 +7,5 @@ import net.kyori.adventure.sound.Sound.Source.PLAYER
 import net.kyori.adventure.sound.Sound.sound
 
 object Sounds : BasicRegistry<Sound>() {
-    val GUN_FIRE = register("gun.fire", sound(key("codered", "gun.fire"), PLAYER, 0.4f, 1f))
+    val GUN_FIRE = register("gun.fire", sound(key("codered", "gun.fire"), PLAYER, 0.2f, 1f))
 }

@@ -24,6 +24,7 @@ object Gun : CustomItem() {
                 append("Gun")
                 notItalic()
             })
+            meta.isUnbreakable = true
         }
     }
     override val key = NamespacedKey("codered", "gun")

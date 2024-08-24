@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="add089fa-e03d-4c14-afec-310b8ae4db31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/AmmoOverlay.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/Overlay.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/Sounds.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/AmmoManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/BlockPoint.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/DirectionedPrecisePoint.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/EmptyBiomeProvider.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/EmptyGenerator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/GameMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/GameMapConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/PrecisePoint.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/Sounds.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/Sounds.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/ChevyFontsPackedPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/ChevyFontsPackedPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Fonts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/Fonts.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredFonts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredFonts.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/CustomItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/CustomItem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/Gun.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/item/gun/Gun.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,9 +65,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin File" />
         <option value="Kotlin Object" />
       </list>
     </option>
@@ -79,33 +87,33 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build code-red.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.code-red [build].executor": "Debug",
-    "Gradle.code-red [runDevBundleServer].executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.ktlint-plugin",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build code-red.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.code-red [build].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.code-red [runDevBundleServer].executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.ktlint-plugin&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "/home/radsteve/.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/home/radsteve/.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/run/plugins" />
@@ -116,7 +124,7 @@
       <command value="gradle runDevBundleServer" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.code-red [build]">
+  <component name="RunManager" selected="Gradle.code-red [runDevBundleServer]">
     <configuration name="code-red [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -163,8 +171,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.code-red [build]" />
         <item itemvalue="Gradle.code-red [runDevBundleServer]" />
+        <item itemvalue="Gradle.code-red [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -185,6 +193,7 @@
       <workItem from="1724457976786" duration="1924000" />
       <workItem from="1724460403583" duration="859000" />
       <workItem from="1724489941607" duration="8655000" />
+      <workItem from="1724529939843" duration="4053000" />
     </task>
     <servers />
   </component>

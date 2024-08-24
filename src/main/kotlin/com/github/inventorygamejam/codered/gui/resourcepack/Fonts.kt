@@ -33,7 +33,7 @@ fun registerChevyFont(
                 key = Key("codered", "$font.ttf")
                 shift = listOf(0.0, verticalShift)
                 size = chevyFont.metadata.size * scaling
-                oversample = size + scaling
+                oversample = size
             }
 
             sprites.forEach { sprite ->

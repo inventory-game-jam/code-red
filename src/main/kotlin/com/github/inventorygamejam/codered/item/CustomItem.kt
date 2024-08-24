@@ -41,6 +41,8 @@ abstract class CustomItem : Listener {
                 ?.let { NamespacedKey.fromString(it) } == key
             && event.action != Action.PHYSICAL
         ) {
+            event.isCancelled = true
+
             if (event.action in listOf(Action.RIGHT_CLICK_AIR, Action.RIGHT_CLICK_BLOCK)) onRightClick(player)
             else onLeftClick(player)
         }
