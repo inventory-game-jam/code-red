@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="add089fa-e03d-4c14-afec-310b8ae4db31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/UUIDSerializer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/CodeRed.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/GameMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gamemap/GameMap.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/IGJAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/util/IGJAPI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredFonts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/inventorygamejam/codered/gui/resourcepack/RegisteredFonts.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +181,7 @@
       <workItem from="1724460403583" duration="859000" />
       <workItem from="1724489941607" duration="8655000" />
       <workItem from="1724529939843" duration="4454000" />
-      <workItem from="1724571790728" duration="712000" />
+      <workItem from="1724571790728" duration="1754000" />
     </task>
     <servers />
   </component>

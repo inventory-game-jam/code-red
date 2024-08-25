@@ -17,6 +17,7 @@ import io.ktor.http.headers
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.util.UUID
 
 @Serializable
 data class APIPlayer(
@@ -67,7 +68,7 @@ object InventoryGameJamAPI {
 
     suspend fun addPlayerToTeam(
         team: String,
-        player: Uid,
+        player: UUID,
     ) = client
         .put("$BASE_URL/teams/$team/$player") {
             headers {
@@ -77,7 +78,7 @@ object InventoryGameJamAPI {
 
     suspend fun removePlayerFromTeam(
         team: String,
-        player: Uid
+        player: UUID
     ) = client.delete("$BASE_URL/teams/$team/$player") {
         headers {
             bearerAuth(CodeRed.apiKey)
@@ -85,7 +86,7 @@ object InventoryGameJamAPI {
     }.body<List<APITeam>>()
 
     suspend fun addPlayerScore(
-        player: Uid,
+        player: UUID,
         score: Int,
     ) = client.post("$BASE_URL/player_score/$player/$score") {
         headers {
@@ -94,7 +95,7 @@ object InventoryGameJamAPI {
     }.body<List<APITeam>>()
 
     suspend fun addTeamScore(
-        player: Uid,
+        player: UUID,
         score: Int
     ) = client.post("$BASE_URL/team_score/$player/$score") {
         headers {
