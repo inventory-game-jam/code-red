@@ -5,6 +5,7 @@ import com.github.inventorygamejam.codered.util.craft
 import net.kyori.adventure.util.TriState
 import net.kyori.adventure.util.TriState.FALSE
 import org.bukkit.Bukkit
+import org.bukkit.GameRule
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.Material.BLUE_STAINED_GLASS
@@ -29,7 +30,7 @@ class GameMap(val config: GameMapConfig) {
 
     fun init() {
         floorSchematic.place(
-            Location(world, 0.0, 0.0, 0.0),
+            Location(world, 0.0, 64.0, 0.0),
             true,
             StructureRotation.NONE,
             Mirror.NONE,
@@ -37,6 +38,13 @@ class GameMap(val config: GameMapConfig) {
             1f,
             random
         )
+
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false)
+        world.setGameRule(GameRule.DO_WEATHER_CYCLE, false)
+        world.setGameRule(GameRule.DO_MOB_SPAWNING, false)
+        world.setGameRule(GameRule.FALL_DAMAGE, false)
+        world.time = 1000
+        world.clearWeatherDuration = 1000
     }
 
     fun placeSpawnPointBlocks() {

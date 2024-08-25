@@ -1,6 +1,5 @@
 package com.github.inventorygamejam.codered.util
 
-import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.negativeSpaces
 import com.github.inventorygamejam.codered.gui.resourcepack.UIFont
 import net.kyori.adventure.key.Key
@@ -13,6 +12,8 @@ import net.kyori.adventure.text.event.HoverEventSource
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
+import net.kyori.adventure.text.minimessage.MiniMessage
+import net.kyori.adventure.text.minimessage.MiniMessage.miniMessage
 
 class TextBuilder {
     private val componentBuilder = Component.text()
@@ -257,3 +258,5 @@ class TextBuilder {
 }
 
 inline fun buildText(block: TextBuilder.() -> Unit) = TextBuilder().apply(block).build()
+
+val String.mm get() = miniMessage().deserialize(this)

@@ -9,5 +9,7 @@ object ChevyFontsPackedPlugin : PackedPlugin {
         RegisteredFonts.REGISTERED_FONTS.filterIsInstance<ChevyFont>().forEach(ChevyFont::init)
         File(pack.outputDir, "fonts").deleteRecursively()
         File(pack.outputDir, ".git").deleteRecursively()
+        File(pack.outputDir, "schematics").deleteRecursively()
+        File(pack.outputDir, "configs").deleteRecursively()
     }
 }
