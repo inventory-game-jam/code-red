@@ -1,3 +1,3 @@
 package com.github.inventorygamejam.codered.team
 
-data object PlayerClass
+data object PlayerRole

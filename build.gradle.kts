@@ -13,6 +13,10 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven {
+        url = uri("http://radsteve.net:8080/public")
+        isAllowInsecureProtocol = true
+    }
 }
 
 dependencies {
