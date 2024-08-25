@@ -9,6 +9,24 @@ object RegisteredSprites {
         256.0,
         127.0,
     )
+    val CODE_RED = sprite(
+        Key("codered", "gui/code_red.png"),
+        '\uE001',
+        16.0,
+        15.0
+    )
+    val CODE_YELLOW = sprite(
+        Key("codered", "gui/code_yellow.png"),
+        '\uE002',
+        16.0,
+        15.0
+    )
+    val CODE_GREEN = sprite(
+        Key("codered", "gui/code_green.png"),
+        '\uE003',
+        16.0,
+        15.0
+    )
 
     fun init() {
         // Reflectively initialise all fields

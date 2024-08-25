@@ -70,7 +70,7 @@ object InventoryGameJamAPI {
         team: String,
         player: UUID,
     ) = client
-        .put("$BASE_URL/teams/$team/$player") {
+        .put("$BASE_URL/teams/$team/$player".replace(" ", "%20")) {
             headers {
                 bearerAuth(CodeRed.apiKey)
             }
@@ -79,7 +79,7 @@ object InventoryGameJamAPI {
     suspend fun removePlayerFromTeam(
         team: String,
         player: UUID
-    ) = client.delete("$BASE_URL/teams/$team/$player") {
+    ) = client.delete("$BASE_URL/teams/$team/$player".replace(" ", "%20")) {
         headers {
             bearerAuth(CodeRed.apiKey)
         }
@@ -95,9 +95,9 @@ object InventoryGameJamAPI {
     }.body<List<APITeam>>()
 
     suspend fun addTeamScore(
-        player: UUID,
+        team: String,
         score: Int
-    ) = client.post("$BASE_URL/team_score/$player/$score") {
+    ) = client.post("$BASE_URL/team_score/$team/$score".replace(" ", "%20")) {
         headers {
             bearerAuth(CodeRed.apiKey)
         }
