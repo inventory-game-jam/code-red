@@ -2,7 +2,7 @@ package com.github.inventorygamejam.codered.gui.resourcepack
 
 import com.github.inventorygamejam.codered.CodeRed.ghPat
 import com.github.inventorygamejam.codered.CodeRed.ghUsername
-import com.github.inventorygamejam.codered.util.IGJAPI
+import com.github.inventorygamejam.codered.util.InventoryGameJamAPI
 import com.github.inventorygamejam.codered.util.sha1
 import com.github.syari.kgit.KGit
 import net.kyori.adventure.resource.ResourcePackInfo.resourcePackInfo
@@ -74,6 +74,6 @@ object CodeRedPack {
     }
 
     suspend fun upload() {
-        IGJAPI.uploadPack(bytes)
+        InventoryGameJamAPI.uploadPack(bytes)
     }
 }

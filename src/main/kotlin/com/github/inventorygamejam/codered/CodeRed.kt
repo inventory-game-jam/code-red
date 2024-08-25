@@ -13,6 +13,7 @@ import com.github.inventorygamejam.codered.item.gun.Gun
 import com.github.shynixn.mccoroutine.bukkit.SuspendingJavaPlugin
 import com.github.shynixn.mccoroutine.bukkit.registerSuspendingEvents
 import com.github.syari.kgit.KGit
+import com.github.syari.kgit.KGit.Companion.cloneRepository
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
@@ -41,6 +42,9 @@ object CodeRed : SuspendingJavaPlugin() {
 
         BulletHandler
 
+        AmmoManager
+        AmmoOverlay
+
         server.pluginManager.registerSuspendingEvents(GeneralPlayerHandler, this)
 
         commandManager.buildAndRegister("gun") {
@@ -50,7 +54,7 @@ object CodeRed : SuspendingJavaPlugin() {
             }
         }
 
-        commandManager.buildAndRegister("gamemap") {
+        commandManager.buildAndRegister("creategame") {
             handler { ctx ->
                 val player = ctx.sender().sender as Player
                 val config = Json.decodeFromString<GameMapConfig>(File(assetPath, "configs/map_config.json").readText())
@@ -66,7 +70,7 @@ object CodeRed : SuspendingJavaPlugin() {
         commandManager.buildAndRegister("refreshassets") {
             permission("minecraft.op")
             handler { _ ->
-                KGit.cloneRepository {
+                cloneRepository {
                     setURI("https://github.com/inventory-game-jam/code-red-assets.git")
                     assetPath.deleteRecursively()
                     setDirectory(assetPath)
@@ -84,9 +88,6 @@ object CodeRed : SuspendingJavaPlugin() {
                 }
             }
         }
-
-        AmmoManager
-        AmmoOverlay
     }
 
     override suspend fun onDisableAsync() {}

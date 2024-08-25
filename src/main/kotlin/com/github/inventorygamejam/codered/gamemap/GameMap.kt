@@ -3,9 +3,12 @@ package com.github.inventorygamejam.codered.gamemap
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.assetPath
 import com.github.inventorygamejam.codered.util.craft
 import net.kyori.adventure.util.TriState
+import net.kyori.adventure.util.TriState.FALSE
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.Material.BLUE_STAINED_GLASS
+import org.bukkit.Material.RED_STAINED_GLASS
 import org.bukkit.NamespacedKey
 import org.bukkit.WorldCreator
 import org.bukkit.block.structure.Mirror
@@ -22,6 +25,7 @@ class GameMap(val config: GameMapConfig) {
     val buildings = buildingFiles.map { file -> structureManager.loadStructure(file) }
     val attackerSpawns = config.attackerSpawnPoints.map { point -> point.location() }
     val defenderSpawns = config.defenderSpawnPoints.map { point -> point.location() }
+    private val random = ThreadLocalRandom.current()
 
     fun init() {
         floorSchematic.place(
@@ -31,16 +35,16 @@ class GameMap(val config: GameMapConfig) {
             Mirror.NONE,
             0,
             1f,
-            ThreadLocalRandom.current()
+            random
         )
     }
 
     fun placeSpawnPointBlocks() {
         defenderSpawns.forEach { spawn ->
-            spawn.clone().add(0.0, 1.0, 0.0).block.type = Material.BLUE_STAINED_GLASS
+            spawn.clone().add(0.0, 1.0, 0.0).block.type = BLUE_STAINED_GLASS
         }
         attackerSpawns.forEach { spawn ->
-            spawn.clone().add(0.0, 1.0, 0.0).block.type = Material.RED_STAINED_GLASS
+            spawn.clone().add(0.0, 1.0, 0.0).block.type = RED_STAINED_GLASS
         }
     }
 
@@ -54,7 +58,7 @@ class GameMap(val config: GameMapConfig) {
                 Mirror.NONE,
                 0,
                 1f,
-                ThreadLocalRandom.current()
+                random
             )
         }
     }
@@ -73,6 +77,6 @@ class GameMap(val config: GameMapConfig) {
             .biomeProvider(EmptyBiomeProvider)
             .generator(EmptyGenerator)
             .generateStructures(false)
-            .keepSpawnLoaded(TriState.FALSE)
+            .keepSpawnLoaded(FALSE)
     }
 }
