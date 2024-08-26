@@ -1,8 +1,7 @@
 package com.github.inventorygamejam.codered.matchmaking
 
+import com.github.inventorygamejam.codered.game.GameInstance
 import com.github.inventorygamejam.codered.team.GameTeam
-import net.kyori.adventure.text.Component
-import org.bukkit.Bukkit
 
 object Matchmaker {
     const val TEAMS_PER_GAME = 8

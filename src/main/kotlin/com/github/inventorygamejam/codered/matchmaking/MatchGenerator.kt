@@ -1,5 +1,7 @@
 package com.github.inventorygamejam.codered.matchmaking
 
+import com.github.inventorygamejam.codered.game.GameMatch
+
 class MatchGenerator {
     private val startListeners: MutableList<MatchListener> = mutableListOf()
     private val endListeners: MutableList<MatchListener> = mutableListOf()
@@ -24,7 +26,7 @@ class MatchGenerator {
 
     /**
      * This method should be called when a new Match is created (aka generated)
-     * @see GameInstance
+     * @see com.github.inventorygamejam.codered.game.GameInstance
      */
     fun startMatch(match: GameMatch) {
         startListeners.forEach {

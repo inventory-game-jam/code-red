@@ -1,8 +1,8 @@
-package com.github.inventorygamejam.codered.matchmaking
+package com.github.inventorygamejam.codered.game
 
 import com.github.inventorygamejam.codered.CodeRed
+import com.github.inventorygamejam.codered.matchmaking.Matchmaker
 import com.github.inventorygamejam.codered.team.GameTeam
-import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import kotlin.random.Random
 
@@ -42,7 +42,6 @@ class GameInstance(private val teamsCount: Int) {
             for (i in teamKeys.indices) {
                 for (j in i + 1 until teamKeys.size) {
                     gamesToRun[teamKeys[i] to teamKeys[j]] = false
-                    Bukkit.broadcast(Component.text("${teamKeys[i]}; ${teamKeys[j]}"))
                 }
             }
         }

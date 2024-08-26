@@ -1,6 +1,7 @@
 package com.github.inventorygamejam.codered.item
 
 import com.github.inventorygamejam.codered.CodeRed
+import com.github.inventorygamejam.codered.util.registerEvents
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
@@ -9,6 +10,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerItemHeldEvent
+import org.bukkit.event.player.PlayerSwapHandItemsEvent
 import org.bukkit.event.player.PlayerToggleFlightEvent
 import org.bukkit.event.player.PlayerToggleSneakEvent
 import org.bukkit.inventory.ItemStack
@@ -20,9 +22,10 @@ abstract class CustomItem : Listener {
     abstract fun onRightClick(player: Player)
     abstract fun onLeftClick(player: Player)
     abstract fun onCrouchChange(player: Player, value: Boolean)
+    abstract val isOffhandable: Boolean
 
     fun init() {
-        Bukkit.getPluginManager().registerEvents(this, CodeRed)
+        registerEvents(this)
         item = item.apply {
             itemMeta = itemMeta.apply {
                 persistentDataContainer.set(
@@ -35,7 +38,7 @@ abstract class CustomItem : Listener {
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
         val player = event.player
-        val item = event.item ?: return
+        val item = player.inventory.itemInMainHand
 
         if (item.persistentDataContainer.get(TYPE_KEY, PersistentDataType.STRING)
                 ?.let { NamespacedKey.fromString(it) } == key
@@ -90,6 +93,16 @@ abstract class CustomItem : Listener {
                 ?.let { NamespacedKey.fromString(it) } == key
         ) {
             onCrouchChange(player, false)
+        }
+    }
+
+    @EventHandler
+    fun onSwapHands(event: PlayerSwapHandItemsEvent) {
+        if (event.mainHandItem.persistentDataContainer.get(TYPE_KEY, PersistentDataType.STRING)
+                ?.let { NamespacedKey.fromString(it) } == key
+            && !isOffhandable
+        ) {
+            event.isCancelled = true
         }
     }
 

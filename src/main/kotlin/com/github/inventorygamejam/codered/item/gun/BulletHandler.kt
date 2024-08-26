@@ -2,6 +2,7 @@ package com.github.inventorygamejam.codered.item.gun
 
 import com.github.inventorygamejam.codered.CodeRed
 import com.github.inventorygamejam.codered.item.gun.FireballBullet.Companion.MAX_SQUARED_DISTANCE
+import com.github.inventorygamejam.codered.util.registerEvents
 import com.github.shynixn.mccoroutine.bukkit.registerSuspendingEvents
 import io.papermc.paper.event.entity.EntityMoveEvent
 import org.bukkit.Bukkit
@@ -19,7 +20,7 @@ object BulletHandler : Listener {
     val uuids get() = projectiles.map(Entity::getUniqueId)
 
     init {
-        Bukkit.getPluginManager().registerSuspendingEvents(this, CodeRed)
+        registerEvents(this)
     }
 
     @EventHandler

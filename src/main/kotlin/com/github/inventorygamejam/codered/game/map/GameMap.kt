@@ -1,13 +1,11 @@
-package com.github.inventorygamejam.codered.gamemap
+package com.github.inventorygamejam.codered.game.map
 
+import com.github.inventorygamejam.codered.CodeRed.gameMapConfig
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.assetPath
-import com.github.inventorygamejam.codered.util.craft
-import net.kyori.adventure.util.TriState
 import net.kyori.adventure.util.TriState.FALSE
 import org.bukkit.Bukkit
 import org.bukkit.GameRule
 import org.bukkit.Location
-import org.bukkit.Material
 import org.bukkit.Material.BLUE_STAINED_GLASS
 import org.bukkit.Material.RED_STAINED_GLASS
 import org.bukkit.NamespacedKey
@@ -18,14 +16,14 @@ import java.io.File
 import java.util.UUID
 import java.util.concurrent.ThreadLocalRandom
 
-class GameMap(val config: GameMapConfig) {
+class GameMap {
     val world = Bukkit.createWorld(worldCreator) ?: error("failed to create world")
     private val structureManager = Bukkit.getServer().structureManager
     val floorSchematic = structureManager.loadStructure(File(assetPath, "schematics/floor.nbt"))
     val buildingFiles = File(assetPath, "schematics/buildings").listFiles()?.toList() ?: emptyList()
     val buildings = buildingFiles.map { file -> structureManager.loadStructure(file) }
-    val attackerSpawns = config.attackerSpawnPoints.map { point -> point.location() }
-    val defenderSpawns = config.defenderSpawnPoints.map { point -> point.location() }
+    val attackerSpawns = gameMapConfig.attackerSpawnPoints.map { point -> point.location() }
+    val defenderSpawns = gameMapConfig.defenderSpawnPoints.map { point -> point.location() }
     private val random = ThreadLocalRandom.current()
 
     fun init() {
@@ -57,7 +55,7 @@ class GameMap(val config: GameMapConfig) {
     }
 
     fun placeBuildings() {
-        config.buildings.forEach { position ->
+        gameMapConfig.buildings.forEach { position ->
             val building = buildings.random()
             building.place(
                 position.location(),

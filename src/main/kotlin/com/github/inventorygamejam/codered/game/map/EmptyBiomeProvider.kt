@@ -1,4 +1,4 @@
-package com.github.inventorygamejam.codered.gamemap
+package com.github.inventorygamejam.codered.game.map
 
 import org.bukkit.block.Biome
 import org.bukkit.generator.BiomeProvider

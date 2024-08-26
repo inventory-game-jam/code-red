@@ -1,5 +1,6 @@
 package com.github.inventorygamejam.codered.message
 
+import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredSprite
 import com.github.inventorygamejam.codered.util.mm
 import net.kyori.adventure.text.Component.empty
 import net.kyori.adventure.title.Title.title
@@ -14,6 +15,8 @@ object Messages {
     fun CommandSender.debug(message: String) = sendRichMessage("<dark_gray>Debug | </dark_gray> $message")
 
     fun title(message: String) = getServer().showTitle(title(message.mm, empty()))
+    fun spriteWithSubtitle(sprite: RegisteredSprite, subtitle: String) =
+        getServer().showTitle(title(sprite.component(), subtitle.mm))
 
     const val CODE_RED = "<dark_gray>Code <red>RED"
     const val CODE_YELLOW = "<dark_gray>Code <yellow>YELLOW"
@@ -24,4 +27,5 @@ object Messages {
     const val DEBUG_TEAMS = "<blue>Current teams according to the IGJ API:"
     const val DEBUG_UPDATED_TEAMS = "<green>Teams updated! New teams:"
     const val DEBUG_SCORES_UPDATED = "<green>Scores updated! New scores:"
+    const val ITEM_PICKED_UP = "<green>You picked up an item! Bring it to your teams base!"
 }

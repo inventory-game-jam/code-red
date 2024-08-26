@@ -4,17 +4,21 @@ import com.github.inventorygamejam.codered.command.registerCreateGameCommand
 import com.github.inventorygamejam.codered.command.registerGunCommand
 import com.github.inventorygamejam.codered.command.registerIGJCommand
 import com.github.inventorygamejam.codered.command.registerRefreshAssetsCommand
+import com.github.inventorygamejam.codered.game.map.GameMapConfig
 import com.github.inventorygamejam.codered.gui.AmmoOverlay
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack
+import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.assetPath
 import com.github.inventorygamejam.codered.handler.GeneralPlayerHandler
 import com.github.inventorygamejam.codered.item.gun.AmmoManager
 import com.github.inventorygamejam.codered.item.gun.BulletHandler
 import com.github.shynixn.mccoroutine.bukkit.SuspendingJavaPlugin
 import com.github.shynixn.mccoroutine.bukkit.registerSuspendingEvents
 import io.papermc.paper.command.brigadier.CommandSourceStack
+import kotlinx.serialization.json.Json
 import org.incendo.cloud.brigadier.BrigadierSetting
 import org.incendo.cloud.execution.ExecutionCoordinator.simpleCoordinator
 import org.incendo.cloud.paper.PaperCommandManager
+import java.io.File
 
 object CodeRed : SuspendingJavaPlugin() {
     override suspend fun onEnableAsync() {
@@ -39,6 +43,8 @@ object CodeRed : SuspendingJavaPlugin() {
 
         server.pluginManager.registerSuspendingEvents(GeneralPlayerHandler, this)
 
+        gameMapConfig = Json.decodeFromString(File(assetPath, "configs/map_config.json").readText())
+
         commandManager.registerGunCommand()
         commandManager.registerCreateGameCommand()
         commandManager.registerRefreshAssetsCommand()
@@ -51,4 +57,5 @@ object CodeRed : SuspendingJavaPlugin() {
     lateinit var apiKey: String
     lateinit var ghUsername: String
     lateinit var ghPat: String
+    lateinit var gameMapConfig: GameMapConfig
 }

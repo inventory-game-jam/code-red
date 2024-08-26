@@ -1,6 +1,7 @@
 package com.github.inventorygamejam.codered.util
 
 import com.github.inventorygamejam.codered.CodeRed
+import com.github.inventorygamejam.codered.team.GameTeam
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -31,7 +32,9 @@ data class APITeam(
     @SerialName("total_score")
     val totalScore: Int,
     val players: List<APIPlayer>,
-)
+) {
+    fun toGameTeam() = GameTeam(name, players.map(APIPlayer::uuid).toMutableList())
+}
 
 object InventoryGameJamAPI {
     const val BASE_URL = "http://radsteve.net:3000"

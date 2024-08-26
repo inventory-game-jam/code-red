@@ -28,6 +28,7 @@ object Gun : CustomItem() {
         }
     }
     override val key = NamespacedKey("codered", "gun")
+    override val isOffhandable = true
 
     override fun onLeftClick(player: Player) {}
 
