@@ -1,5 +1,6 @@
 package com.github.inventorygamejam.codered.message
 
+import com.github.inventorygamejam.codered.game.GameMatch
 import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredSprite
 import com.github.inventorygamejam.codered.util.mm
 import net.kyori.adventure.text.Component.empty
@@ -18,9 +19,14 @@ object Messages {
     fun spriteWithSubtitle(sprite: RegisteredSprite, subtitle: String) =
         getServer().showTitle(title(sprite.component(), subtitle.mm))
 
-    const val CODE_RED = "<dark_gray>Code <red>RED"
-    const val CODE_YELLOW = "<dark_gray>Code <yellow>YELLOW"
-    const val CODE_GREEN = "<dark_gray>Code <green>GREEN"
+    fun GameMatch.broadcast(message: String) = players.forEach { player -> player.sendMessage(message.mm) }
+    fun GameMatch.title(message: String) = players.forEach { player -> player.showTitle(title(message.mm, empty())) }
+    fun GameMatch.spriteWithSubtitle(sprite: RegisteredSprite, subtitle: String) =
+        players.forEach { player -> player.showTitle(title(sprite.component(), subtitle.mm)) }
+
+    const val CODE_RED = "<gray>Code <red>RED"
+    const val CODE_YELLOW = "<gray>Code <yellow>YELLOW"
+    const val CODE_GREEN = "<gray>Code <green>GREEN"
     const val OBJECTIVE_DESTROYED = "<red>The objective has been destroyed."
     const val ATTACKERS_WIN = "<gray>The <red>attackers</red> win."
     const val DEFENDERS_WIN = "<gray>The <blue>defenders</blue> win."
@@ -28,4 +34,6 @@ object Messages {
     const val DEBUG_UPDATED_TEAMS = "<green>Teams updated! New teams:"
     const val DEBUG_SCORES_UPDATED = "<green>Scores updated! New scores:"
     const val ITEM_PICKED_UP = "<green>You picked up an item! Bring it to your teams base!"
+    const val ALL_ITEMS_COLLECTED =
+        "<green>The attackers have picked up all items! It is now </green>$CODE_YELLOW.<br><red>The attackers will now have time to destroy the main objective."
 }

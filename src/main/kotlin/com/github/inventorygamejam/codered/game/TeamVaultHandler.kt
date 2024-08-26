@@ -1,5 +1,7 @@
 package com.github.inventorygamejam.codered.game
 
+import com.github.inventorygamejam.codered.message.Messages
+import com.github.inventorygamejam.codered.message.Messages.debug
 import com.github.inventorygamejam.codered.util.isOther
 import com.github.inventorygamejam.codered.util.removeSingle
 import org.bukkit.event.EventHandler
@@ -12,6 +14,8 @@ class TeamVaultHandler(val match: GameMatch) : Listener {
 
     @EventHandler
     fun onDisplay(event: VaultDisplayItemEvent) {
+        val items = match.teamVault.items
+        if (i > items.size - 1) i = 0
         event.displayItem = match.teamVault.items.getOrNull(i)
         if (i < match.teamVault.items.size) i++ else i = 0
     }
@@ -25,5 +29,7 @@ class TeamVaultHandler(val match: GameMatch) : Listener {
         lootItem.isCollected = true
         match.teamVault.items.add(item)
         event.player.inventory.removeSingle(item)
+
+        if (match.lootItems.all { lootItem -> lootItem.isCollected }) match.codeYellow()
     }
 }

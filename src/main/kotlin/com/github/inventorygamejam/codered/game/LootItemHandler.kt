@@ -1,5 +1,6 @@
 package com.github.inventorygamejam.codered.game
 
+import com.github.inventorygamejam.codered.message.Messages
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Interaction
 import org.bukkit.event.EventHandler
@@ -21,6 +22,7 @@ class LootItemHandler(val match: GameMatch) : Listener {
         lootItem.interaction.remove()
         lootItem.itemDisplay.remove()
         player.inventory.addItem(lootItem.item)
+        event.player.sendRichMessage(Messages.ITEM_PICKED_UP)
     }
 
     @EventHandler
@@ -36,5 +38,6 @@ class LootItemHandler(val match: GameMatch) : Listener {
         lootItem.interaction.remove()
         lootItem.itemDisplay.remove()
         player.inventory.addItem(lootItem.item)
+        event.player.sendRichMessage(Messages.ITEM_PICKED_UP)
     }
 }
