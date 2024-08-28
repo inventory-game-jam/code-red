@@ -12,11 +12,11 @@ version = "0.0.0"
 repositories {
     mavenLocal()
     mavenCentral()
-    maven("https://repo.papermc.io/repository/maven-public/")
     maven {
         url = uri("http://radsteve.net:8080/public")
         isAllowInsecureProtocol = true
     }
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
@@ -33,6 +33,9 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:2.3.12")
     implementation("io.ktor:ktor-client-content-negotiation:2.3.12")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
+    implementation("com.noxcrew.interfaces:interfaces:1.2.1-SNAPSHOT") {
+        exclude("io.papermc.paper", "paper-api")
+    }
 
     paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 }

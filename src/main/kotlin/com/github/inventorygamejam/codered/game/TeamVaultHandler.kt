@@ -22,6 +22,8 @@ class TeamVaultHandler(val match: GameMatch) : Listener {
 
     @EventHandler
     fun onInteract(event: PlayerInteractEvent) {
+        if (match.isAttacker(event.player)) return
+
         val block = event.clickedBlock ?: return
         if (!block.location.isOther(match.teamVault.location)) return
         val item = event.item ?: return
@@ -29,6 +31,7 @@ class TeamVaultHandler(val match: GameMatch) : Listener {
         lootItem.isCollected = true
         match.teamVault.items.add(item)
         event.player.inventory.removeSingle(item)
+        event.player.sendRichMessage(Messages.ITEM_INSERTED)
 
         if (match.lootItems.all { lootItem -> lootItem.isCollected }) match.codeYellow()
     }

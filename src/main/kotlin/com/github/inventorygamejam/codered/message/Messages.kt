@@ -33,7 +33,10 @@ object Messages {
     const val DEBUG_TEAMS = "<blue>Current teams according to the IGJ API:"
     const val DEBUG_UPDATED_TEAMS = "<green>Teams updated! New teams:"
     const val DEBUG_SCORES_UPDATED = "<green>Scores updated! New scores:"
-    const val ITEM_PICKED_UP = "<green>You picked up an item! Bring it to your teams base!"
+    const val ITEM_PICKED_UP = "<green>You picked up an item! Bring it to your teams vault!"
     const val ALL_ITEMS_COLLECTED =
         "<green>The attackers have picked up all items! It is now </green>$CODE_YELLOW.<br><red>The attackers will now have time to destroy the main objective."
+    const val ITEM_INSERTED = "<green>Item has been added into the team vault!"
+    const val ROLE_UPDATED = "<green>Role updated!"
+    const val DEFENDERS_ESCAPED = "<green>The <blue>defenders</blue> have successfully escaped and evacuated."
 }

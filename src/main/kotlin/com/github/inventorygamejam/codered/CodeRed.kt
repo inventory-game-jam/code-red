@@ -4,6 +4,7 @@ import com.github.inventorygamejam.codered.command.registerCreateGameCommand
 import com.github.inventorygamejam.codered.command.registerGunCommand
 import com.github.inventorygamejam.codered.command.registerIGJCommand
 import com.github.inventorygamejam.codered.command.registerRefreshAssetsCommand
+import com.github.inventorygamejam.codered.command.registerSelectRoleCommand
 import com.github.inventorygamejam.codered.game.map.GameMapConfig
 import com.github.inventorygamejam.codered.gui.AmmoOverlay
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack
@@ -13,6 +14,7 @@ import com.github.inventorygamejam.codered.item.gun.AmmoManager
 import com.github.inventorygamejam.codered.item.gun.BulletHandler
 import com.github.shynixn.mccoroutine.bukkit.SuspendingJavaPlugin
 import com.github.shynixn.mccoroutine.bukkit.registerSuspendingEvents
+import com.noxcrew.interfaces.InterfacesListeners
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import kotlinx.serialization.json.Json
 import org.incendo.cloud.brigadier.BrigadierSetting
@@ -41,6 +43,8 @@ object CodeRed : SuspendingJavaPlugin() {
         AmmoManager
         AmmoOverlay
 
+        InterfacesListeners.install(this)
+
         server.pluginManager.registerSuspendingEvents(GeneralPlayerHandler, this)
 
         gameMapConfig = Json.decodeFromString(File(assetPath, "configs/map_config.json").readText())
@@ -49,6 +53,7 @@ object CodeRed : SuspendingJavaPlugin() {
         commandManager.registerCreateGameCommand()
         commandManager.registerRefreshAssetsCommand()
         commandManager.registerIGJCommand()
+        commandManager.registerSelectRoleCommand()
     }
 
     override suspend fun onDisableAsync() {}

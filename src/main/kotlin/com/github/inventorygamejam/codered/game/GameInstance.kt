@@ -18,6 +18,7 @@ class GameInstance(private val teamsCount: Int) {
      */
     private val teams: MutableMap<GameTeam, Boolean> = hashMapOf()
     private var gamesToRun: MutableMap<Pair<GameTeam, GameTeam>, Boolean> = hashMapOf()
+    var roundNumber = 1
 
     init {
         Matchmaker.matchGenerator.onMatchEnd { match ->

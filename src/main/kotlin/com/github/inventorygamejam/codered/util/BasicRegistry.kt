@@ -74,8 +74,12 @@ open class BasicRegistry<T : Any>(
     /**
      * Performs [action] on every registered entry.
      */
-    fun forEach(action: Consumer<T>) {
+    fun forEach(action: (T) -> Unit) {
         entries.forEach(action)
+    }
+
+    fun forEachIndexed(action: (Int, T) -> Unit) {
+        entries.forEachIndexed(action)
     }
 
     /**
