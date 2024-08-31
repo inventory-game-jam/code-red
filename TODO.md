@@ -4,9 +4,9 @@
 - Make the main objective
 - Better role selection
 - Make proper loot generation (preferably inside of buildings)
-- Rewrite the whole gun, bullet and ammo system 
-  - Add gun registry
-  - Add gun lambda builder 
-  - Make bullet velocity and damage variable
+- ~~Rewrite the whole gun, bullet and ammo system~~ Finished!
+  - ~~Add gun registry~~ Finished!
+  - ~~Add gun lambda builder~~ Finished!
+  - ~~Make bullet velocity and damage variable~~ Finished!
 - Add a killcam
 - add a post-game stats menu, including kills, total damage dealt, etc.
