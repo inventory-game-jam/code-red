@@ -1,8 +1,6 @@
 package com.github.inventorygamejam.codered.item
 
-import com.github.inventorygamejam.codered.CodeRed
 import com.github.inventorygamejam.codered.util.registerEvents
-import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -41,7 +39,7 @@ abstract class CustomItem : Listener {
         val item = player.inventory.itemInMainHand
 
         if (item.persistentDataContainer.get(TYPE_KEY, PersistentDataType.STRING)
-                ?.let { NamespacedKey.fromString(it) } == key
+                ?.let(NamespacedKey::fromString) == key
             && event.action != Action.PHYSICAL
         ) {
             event.isCancelled = true
@@ -57,9 +55,9 @@ abstract class CustomItem : Listener {
         val item = player.inventory.itemInMainHand
 
         if (item.persistentDataContainer.get(TYPE_KEY, PersistentDataType.STRING)
-                ?.let { NamespacedKey.fromString(it) } == key
+                ?.let(NamespacedKey::fromString) == key
         ) {
-            if(player.isFlying) return
+            if (player.isFlying) return
             onCrouchChange(player, event.isSneaking)
         }
     }
@@ -71,13 +69,13 @@ abstract class CustomItem : Listener {
         val newStack = player.inventory.getItem(event.newSlot)
 
         if (previousStack?.persistentDataContainer?.get(TYPE_KEY, PersistentDataType.STRING)
-                ?.let { NamespacedKey.fromString(it) } == key
+                ?.let(NamespacedKey::fromString) == key
         ) {
             onCrouchChange(player, false)
         }
 
         if (newStack?.persistentDataContainer?.get(TYPE_KEY, PersistentDataType.STRING)
-                ?.let { NamespacedKey.fromString(it) } == key
+                ?.let(NamespacedKey::fromString) == key
             && player.isSneaking
         ) {
             onCrouchChange(player, true)
@@ -90,7 +88,7 @@ abstract class CustomItem : Listener {
         if (!player.isSneaking) return
 
         if (player.inventory.itemInMainHand.persistentDataContainer.get(TYPE_KEY, PersistentDataType.STRING)
-                ?.let { NamespacedKey.fromString(it) } == key
+                ?.let(NamespacedKey::fromString) == key
         ) {
             onCrouchChange(player, false)
         }
@@ -99,7 +97,7 @@ abstract class CustomItem : Listener {
     @EventHandler
     fun onSwapHands(event: PlayerSwapHandItemsEvent) {
         if (event.mainHandItem.persistentDataContainer.get(TYPE_KEY, PersistentDataType.STRING)
-                ?.let { NamespacedKey.fromString(it) } == key
+                ?.let(NamespacedKey::fromString) == key
             && !isOffhandable
         ) {
             event.isCancelled = true

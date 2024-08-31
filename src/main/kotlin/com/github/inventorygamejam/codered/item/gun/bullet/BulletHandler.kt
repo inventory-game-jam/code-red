@@ -1,9 +1,9 @@
 package com.github.inventorygamejam.codered.item.gun.bullet
 
-import com.github.inventorygamejam.codered.CodeRed
 import com.github.inventorygamejam.codered.util.registerEvents
+import com.github.inventorygamejam.codered.util.runTask
 import io.papermc.paper.event.entity.EntityMoveEvent
-import org.bukkit.Bukkit
+import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -13,8 +13,8 @@ import org.bukkit.event.entity.ProjectileHitEvent
 
 object BulletHandler : Listener {
     val bullets = mutableListOf<Bullet>()
-    val projectiles get() = bullets.associateBy { it.projectile }
-    val uuids get() = bullets.map { it.projectile.uniqueId }
+    val projectiles get() = bullets.associateBy(Bullet::projectile)
+    val uuids get() = bullets.map(Bullet::projectile).map(Entity::getUniqueId)
 
     init {
         registerEvents(this)
@@ -23,7 +23,7 @@ object BulletHandler : Listener {
     @EventHandler
     fun onHit(event: ProjectileHitEvent) {
         if (event.entity.uniqueId in uuids) return
-        val bullet = projectiles[event.entity] ?: error("this isn't even possible lol")
+        val bullet = projectiles[event.entity] ?: return
 
         event.hitEntity?.let { entity ->
             val livingEntity = entity as? LivingEntity ?: return@let
@@ -31,7 +31,7 @@ object BulletHandler : Listener {
         }
 
         event.isCancelled = true
-        Bukkit.getScheduler().runTaskLater(CodeRed, Runnable { event.entity.remove() }, 40L)
+        runTask(40) { event.entity.remove() }
     }
 
     @EventHandler
@@ -47,7 +47,7 @@ object BulletHandler : Listener {
     @EventHandler
     fun onMove(event: EntityMoveEvent) {
         if (event.entity.uniqueId !in uuids) return
-        val bullet = bullets.find { it.projectile.uniqueId == event.entity.uniqueId } ?: return
+        val bullet = bullets.find { bullet -> bullet.projectile.uniqueId == event.entity.uniqueId } ?: return
 
         if (bullet.origin.distanceSquared(bullet.projectile.location) > bullet.type.effectiveRange) {
             bullet.projectile.remove()

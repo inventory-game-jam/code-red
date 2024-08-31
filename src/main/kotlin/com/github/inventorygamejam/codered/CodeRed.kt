@@ -39,8 +39,8 @@ object CodeRed : SuspendingJavaPlugin() {
 
         logger.info("Fetching teams...")
         apiTeams = InventoryGameJamAPI.getTeams()
-        gameTeams = apiTeams.map {
-            GameTeam(it.name, mutableListOf())
+        gameTeams = apiTeams.map { apiTeam ->
+            GameTeam(apiTeam.name, mutableListOf())
         }
 
         CodeRedPack.init()

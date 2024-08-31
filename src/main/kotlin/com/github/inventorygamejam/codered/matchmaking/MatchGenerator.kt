@@ -29,8 +29,8 @@ class MatchGenerator {
      * @see com.github.inventorygamejam.codered.game.GameInstance
      */
     fun startMatch(match: GameMatch) {
-        startListeners.forEach {
-            it.onEvent(match)
+        startListeners.forEach { listener ->
+            listener.onEvent(match)
         }
     }
 
@@ -38,8 +38,8 @@ class MatchGenerator {
      * This method should be called when a match ends
      */
     fun endMatch(match: GameMatch) {
-        endListeners.forEach {
-            it.onEvent(match)
+        endListeners.forEach { listener ->
+            listener.onEvent(match)
         }
     }
 

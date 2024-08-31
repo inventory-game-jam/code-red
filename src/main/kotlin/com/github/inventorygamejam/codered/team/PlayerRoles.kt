@@ -1,6 +1,5 @@
 package com.github.inventorygamejam.codered.team
 
-import com.github.inventorygamejam.codered.item.gun.GunType
 import com.github.inventorygamejam.codered.item.gun.GunTypes
 import com.github.inventorygamejam.codered.util.BasicRegistry
 import com.github.inventorygamejam.codered.util.name

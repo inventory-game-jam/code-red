@@ -12,9 +12,10 @@ object GunHandler : Listener {
 
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
-        if(event.action.isRightClick) {
+        if (event.action.isRightClick) {
             val gun = guns[event.item] ?: return
-            if(gun.ammo <= 0) return
+            if (gun.ammo <= 0) return
+            if (event.player.hasCooldown(gun.item.type)) return
             gun.type.shoot(event.player, gun.item)
             gun.ammo--
         } else {
@@ -24,9 +25,8 @@ object GunHandler : Listener {
 
     @EventHandler
     fun onPlayerToggleSneak(event: PlayerToggleSneakEvent) {
-        if(event.player.isFlying) return
+        if (event.player.isFlying) return
         val itemInHand = event.player.inventory.itemInMainHand
-
         val gun = guns[itemInHand] ?: return
         gun.type.showScope(event.isSneaking, event.player)
     }

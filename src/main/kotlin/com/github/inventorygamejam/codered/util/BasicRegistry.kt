@@ -22,7 +22,7 @@ open class BasicRegistry<T : Any>(
     /**
      * The registered entries in this registry.
      */
-    val entries: List<T> get() = entries.toList()
+    val entries: List<T> get() = _entries.toList()
 
     /**
      * The registered keys in this registry.

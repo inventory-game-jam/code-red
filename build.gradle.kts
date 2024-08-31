@@ -12,10 +12,7 @@ version = "0.0.0"
 repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-        url = uri("http://maven.radsteve.net/public")
-        isAllowInsecureProtocol = true
-    }
+    maven("https://maven.radsteve.net/public")
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://maven.noxcrew.com/public")
 }

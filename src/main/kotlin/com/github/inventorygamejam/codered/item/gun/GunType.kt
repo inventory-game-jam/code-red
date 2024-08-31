@@ -84,7 +84,7 @@ class GunType private constructor(
         fun build(): GunType {
             return GunType(
                 item,
-                bullet ?: throw IllegalArgumentException("BulletType must be provided"),
+                bullet ?: error("BulletType must be provided"),
                 cooldown,
                 maxAmmo,
                 zoomFactor,
@@ -95,6 +95,6 @@ class GunType private constructor(
     }
 
     companion object {
-        inline fun buildGunType(block: GunType.Builder.() -> Unit) = GunType.Builder().apply(block).build()
+        inline fun buildGunType(block: Builder.() -> Unit) = Builder().apply(block).build()
     }
 }

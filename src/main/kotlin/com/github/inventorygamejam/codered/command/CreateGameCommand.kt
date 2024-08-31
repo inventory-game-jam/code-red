@@ -10,20 +10,21 @@ import org.incendo.cloud.kotlin.extension.buildAndRegister
 import org.incendo.cloud.paper.PaperCommandManager
 import org.incendo.cloud.parser.standard.StringParser.quotedStringParser
 import org.incendo.cloud.suggestion.SuggestionProvider
+import org.incendo.cloud.suggestion.SuggestionProvider.suggestingStrings
 
 fun PaperCommandManager<CommandSourceStack>.registerCreateGameCommand() {
     buildAndRegister("creategame") {
         required("team1", quotedStringParser<CommandSourceStack>()) {
             suggestionProvider(
-                SuggestionProvider.suggestingStrings<CommandSourceStack>(
-                    CodeRed.apiTeams.map { it.name }
+                suggestingStrings<CommandSourceStack>(
+                    CodeRed.apiTeams.map(APITeam::name)
                 )
             )
         }
         required("team2", quotedStringParser<CommandSourceStack>()) {
             suggestionProvider(
-                SuggestionProvider.suggestingStrings<CommandSourceStack>(
-                    CodeRed.apiTeams.map { it.name }
+                suggestingStrings<CommandSourceStack>(
+                    CodeRed.apiTeams.map(APITeam::name)
                 )
             )
         }
@@ -31,17 +32,10 @@ fun PaperCommandManager<CommandSourceStack>.registerCreateGameCommand() {
         handler { ctx ->
             val apiTeams = runBlocking { InventoryGameJamAPI.getTeams() }
             val gameTeams = apiTeams.map(APITeam::toGameTeam)
-            val team1 = gameTeams.find { it.name == ctx.get<String>("team1") }!!
-            val team2 = gameTeams.find { it.name == ctx.get<String>("team2") }!!
+            val team1 = gameTeams.find { gameTeam -> gameTeam.name == ctx.get<String>("team1") } ?: return@handler
+            val team2 = gameTeams.find { gameTeam -> gameTeam.name == ctx.get<String>("team2") } ?: return@handler
 
             GameMatch(team1, team2)
-            //gameTeams.forEach(Matchmaker::addTeam)
-            /* val map = GameMap(config)
-            map.init()
-            map.placeBuildings()
-            map.placeSpawnPointBlocks()
-            val location = map.attackerSpawns.first().add(0.0, 2.0, 0.0)
-            player.teleport(location) */
         }
     }
 }

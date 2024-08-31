@@ -8,6 +8,6 @@ import kotlin.io.path.readBytes
 fun File.sha1() = toPath()
     .readBytes()
     .inputStream()
-    .use {
-        MessageDigest.getInstance("SHA-1").digest(it.readBytes())
-    }.joinToString("") { "%02x".format(it) }
+    .use { stream ->
+        MessageDigest.getInstance("SHA-1").digest(stream.readBytes())
+    }.joinToString("") { sha -> "%02x".format(sha) }

@@ -7,7 +7,7 @@ import java.io.File
 
 data class ChevyFont(val metaFile: File, val ttfFile: File, override val registeredSprites: List<RegisteredSprite>) : UIFont {
     val metadata: FontMetadata = Json.decodeFromString(metaFile.readText())
-    override val glyphWidths = metadata.glyphs.associate { it.char to it.width }.toMutableMap().apply {
+    override val glyphWidths = metadata.glyphs.associate { glyph -> glyph.char to glyph.width }.toMutableMap().apply {
         set(' ', values.first())
     }.filterKeys { char -> char.code > 0 }.toMap()
 

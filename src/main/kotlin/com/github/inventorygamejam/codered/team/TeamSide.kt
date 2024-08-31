@@ -4,7 +4,5 @@ enum class TeamSide {
     ATTACK,
     DEFEND;
 
-    fun opposite(): TeamSide {
-        return if(this == ATTACK) DEFEND else ATTACK
-    }
+    fun opposite() = if (this == ATTACK) DEFEND else ATTACK
 }
