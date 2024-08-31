@@ -1,6 +1,7 @@
 package com.github.inventorygamejam.codered.team
 
-import com.github.inventorygamejam.codered.item.gun.Gun
+import com.github.inventorygamejam.codered.item.gun.GunType
+import com.github.inventorygamejam.codered.item.gun.GunTypes
 import com.github.inventorygamejam.codered.util.BasicRegistry
 import com.github.inventorygamejam.codered.util.name
 import org.bukkit.Material
@@ -12,15 +13,24 @@ object PlayerRoles : BasicRegistry<PlayerRole>() {
     val SNIPER = register("sniper", PlayerRole(ItemStack.of(Material.BOW).name("<aqua>Sniper"), Items.LEATHER_ARMOR, listOf(Items.GUN)))
     val ASSAULTER = register(
         "assaulter",
-        PlayerRole(ItemStack.of(Material.IRON_SWORD).name("<red>Assaulter"), Items.LEATHER_ARMOR, listOf(Items.STONE_SWORD, Items.BOW, Items.SMALL_ARROWS))
+        PlayerRole(
+            ItemStack.of(Material.IRON_SWORD).name("<red>Assaulter"),
+            Items.LEATHER_ARMOR, listOf(Items.STONE_SWORD, Items.BOW, Items.SMALL_ARROWS)
+        )
     )
     val MEDIC = register(
         "medic",
-        PlayerRole(ItemStack.of(Material.GOLDEN_APPLE).name("<green>Medic"), Items.LEATHER_ARMOR, listOf(Items.WOODEN_SWORD, Items.HEALING_POTION, Items.HEALING_POTION))
+        PlayerRole(
+            ItemStack.of(Material.GOLDEN_APPLE).name("<green>Medic"),
+            Items.LEATHER_ARMOR, listOf(Items.WOODEN_SWORD, Items.HEALING_POTION, Items.HEALING_POTION)
+        )
     )
     val SUPPORTER = register(
         "supporter",
-        PlayerRole(ItemStack.of(Material.COBWEB).name("<blue>Supporter"), Items.LEATHER_ARMOR, listOf(Items.WOODEN_SWORD, Items.COBWEBS, Items.TNT, Items.BOW, Items.ARROWS))
+        PlayerRole(
+            ItemStack.of(Material.COBWEB).name("<blue>Supporter"),
+            Items.LEATHER_ARMOR, listOf(Items.WOODEN_SWORD, Items.COBWEBS, Items.TNT, Items.BOW, Items.ARROWS)
+        )
     )
 
     object Items {
@@ -31,7 +41,7 @@ object PlayerRoles : BasicRegistry<PlayerRole>() {
                 meta.basePotionType = PotionType.HEALING
             }
         }
-        val GUN = Gun.item
+        val GUN get() = GunTypes.GLOCK18.createGun().item
         val COBWEBS = ItemStack.of(Material.COBWEB, 4)
         val TNT = ItemStack.of(Material.TNT)
         val LEATHER_ARMOR = listOf(

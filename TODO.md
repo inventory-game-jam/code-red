@@ -1,0 +1,12 @@
+# TODO
+- Finish mapgen
+- Create more buildings for mapgen
+- Make the main objective
+- Better role selection
+- Make proper loot generation (preferably inside of buildings)
+- Rewrite the whole gun, bullet and ammo system 
+  - Add gun registry
+  - Add gun lambda builder 
+  - Make bullet velocity and damage variable
+- Add a killcam
+- add a post-game stats menu, including kills, total damage dealt, etc.

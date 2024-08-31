@@ -10,8 +10,11 @@ import com.github.inventorygamejam.codered.gui.AmmoOverlay
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.assetPath
 import com.github.inventorygamejam.codered.handler.GeneralPlayerHandler
-import com.github.inventorygamejam.codered.item.gun.AmmoManager
-import com.github.inventorygamejam.codered.item.gun.BulletHandler
+import com.github.inventorygamejam.codered.item.gun.GunHandler
+import com.github.inventorygamejam.codered.item.gun.bullet.BulletHandler
+import com.github.inventorygamejam.codered.team.GameTeam
+import com.github.inventorygamejam.codered.util.APITeam
+import com.github.inventorygamejam.codered.util.InventoryGameJamAPI
 import com.github.shynixn.mccoroutine.bukkit.SuspendingJavaPlugin
 import com.github.shynixn.mccoroutine.bukkit.registerSuspendingEvents
 import com.noxcrew.interfaces.InterfacesListeners
@@ -34,13 +37,19 @@ object CodeRed : SuspendingJavaPlugin() {
         ghPat =
             config.getString("ghPat") ?: error("No github PAT specified! This is needed for cloning the asset repo!")
 
+        logger.info("Fetching teams...")
+        apiTeams = InventoryGameJamAPI.getTeams()
+        gameTeams = apiTeams.map {
+            GameTeam(it.name, mutableListOf())
+        }
+
         CodeRedPack.init()
         CodeRedPack.save()
         CodeRedPack.upload()
 
         BulletHandler
 
-        AmmoManager
+        GunHandler
         AmmoOverlay
 
         InterfacesListeners.install(this)
@@ -59,6 +68,8 @@ object CodeRed : SuspendingJavaPlugin() {
     override suspend fun onDisableAsync() {}
 
     lateinit var commandManager: PaperCommandManager<CommandSourceStack>
+    lateinit var apiTeams: List<APITeam>
+    lateinit var gameTeams: List<GameTeam>
     lateinit var apiKey: String
     lateinit var ghUsername: String
     lateinit var ghPat: String

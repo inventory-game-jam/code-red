@@ -1,4 +1,4 @@
-package com.github.inventorygamejam.codered.item.gun
+package com.github.inventorygamejam.codered.item.gun.bullet
 
 import org.bukkit.Location
 import org.bukkit.Material
@@ -8,21 +8,21 @@ import org.bukkit.event.Listener
 import org.bukkit.inventory.ItemStack
 import org.bukkit.util.Vector
 
-class FireballBullet(
-    val sender: Player,
-    val origin: Location,
-    val viewVector: Vector,
-) : Listener {
-    val projectile =
-        origin.world.spawn(origin, SizedFireball::class.java) { entity ->
+class BulletType(
+    val damage: Double,
+    val velocityPerBlock: Float,
+    val effectiveRange: Float,
+) {
+    fun createBullet(sender: Player, origin: Location, viewVector: Vector): Bullet {
+        val projectile = origin.world.spawn(origin, SizedFireball::class.java) { entity ->
             entity.displayItem = BULLET_ITEM
             entity.shooter = sender
             entity.direction = viewVector
-            entity.acceleration = viewVector.multiply(10)
+            entity.acceleration = viewVector.multiply(velocityPerBlock)
         }
-
-    init {
-        BulletHandler.bullets.add(this)
+        val bullet = Bullet(this, sender, projectile, origin)
+        BulletHandler.bullets.add(bullet)
+        return bullet
     }
 
     companion object {
@@ -32,7 +32,5 @@ class FireballBullet(
                     meta.setCustomModelData(1)
                 }
             }
-
-        const val MAX_SQUARED_DISTANCE = 50
     }
 }
