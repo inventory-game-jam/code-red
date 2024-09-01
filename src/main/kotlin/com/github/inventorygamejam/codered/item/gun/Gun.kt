@@ -6,6 +6,15 @@ import org.bukkit.inventory.ItemStack
 import kotlin.math.roundToInt
 
 class Gun(val type: GunType, var ammo: Int, val item: ItemStack) {
+    var reloadingTicks = 0
+    val hasAmmo get() = ammo > 0
+    val isReloading get() = reloadingTicks > 0
+
+    fun startReload() {
+        ammo = 0
+        reloadingTicks = type.wholeMagazineReload
+    }
+
     fun colors(): Map<IntRange, TextColor> {
         val full = type.maxAmmo
         val twoThirds = (full * 2 / 3.0).roundToInt()

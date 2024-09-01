@@ -19,7 +19,8 @@ import java.time.Duration.ofMillis
 class GunType private constructor(
     private val item: () -> ItemStack,
     val bullet: BulletType,
-    val cooldown: Int,
+    val insideMagazineReload: Int,
+    val wholeMagazineReload: Int,
     val maxAmmo: Int,
     val zoomFactor: Int = 2,
     val scopeSprite: RegisteredSprite? = RegisteredSprites.SCOPE,
@@ -53,7 +54,7 @@ class GunType private constructor(
 
     fun shoot(player: Player, item: ItemStack) {
         val origin = player.location.add(0.0, 1.4, 0.0)
-        player.setCooldown(item.type, cooldown)
+        player.setCooldown(item.type, insideMagazineReload)
         bullet.createBullet(player, origin, player.eyeLocation.direction)
         player.playSound(shootSound)
     }
@@ -67,7 +68,8 @@ class GunType private constructor(
     class Builder {
         private var item: () -> ItemStack = { ItemStack(Material.GOLDEN_SHOVEL) }
         private var bullet: BulletType? = null
-        private var cooldown: Int = 0
+        private var insideMagazineReload: Int = 10
+        private var wholeMagazineReload: Int = 100
         private var maxAmmo: Int = 0
         private var zoomFactor: Int = 2
         private var scopeSprite: RegisteredSprite? = RegisteredSprites.SCOPE
@@ -75,7 +77,8 @@ class GunType private constructor(
 
         fun item(item: () -> ItemStack) = apply { this.item = item }
         fun bullet(bullet: BulletType) = apply { this.bullet = bullet }
-        fun cooldown(cooldown: Int) = apply { this.cooldown = cooldown }
+        fun insideMagazineReload(insideMagazineReload: Int) = apply { this.insideMagazineReload = insideMagazineReload }
+        fun wholeMagazineReload(wholeMagazineReload: Int) = apply { this.wholeMagazineReload = wholeMagazineReload }
         fun maxAmmo(maxAmmo: Int) = apply { this.maxAmmo = maxAmmo }
         fun zoomFactor(zoomFactor: Int) = apply { this.zoomFactor = zoomFactor }
         fun scopeSprite(scopeSprite: RegisteredSprite?) = apply { this.scopeSprite = scopeSprite }
@@ -85,7 +88,8 @@ class GunType private constructor(
             return GunType(
                 item,
                 bullet ?: error("BulletType must be provided"),
-                cooldown,
+                insideMagazineReload,
+                wholeMagazineReload,
                 maxAmmo,
                 zoomFactor,
                 scopeSprite,

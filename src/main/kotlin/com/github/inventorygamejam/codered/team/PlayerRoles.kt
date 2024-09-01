@@ -9,26 +9,32 @@ import org.bukkit.inventory.meta.PotionMeta
 import org.bukkit.potion.PotionType
 
 object PlayerRoles : BasicRegistry<PlayerRole>() {
-    val SNIPER = register("sniper", PlayerRole(ItemStack.of(Material.BOW).name("<aqua>Sniper"), Items.LEATHER_ARMOR, listOf(Items.GUN)))
+    val SNIPER = register(
+        "sniper",
+        PlayerRole(
+            ItemStack.of(Material.BOW).name("<aqua>Sniper"),
+            Items.ARMOR_NONE, listOf(Items.AWP)
+        )
+    )
     val ASSAULTER = register(
         "assaulter",
         PlayerRole(
             ItemStack.of(Material.IRON_SWORD).name("<red>Assaulter"),
-            Items.LEATHER_ARMOR, listOf(Items.STONE_SWORD, Items.BOW, Items.SMALL_ARROWS)
+            Items.LEATHER_ARMOR, listOf(Items.M16)
         )
     )
     val MEDIC = register(
         "medic",
         PlayerRole(
             ItemStack.of(Material.GOLDEN_APPLE).name("<green>Medic"),
-            Items.LEATHER_ARMOR, listOf(Items.WOODEN_SWORD, Items.HEALING_POTION, Items.HEALING_POTION)
+            Items.ARMOR_NONE, listOf(Items.HEALING_POTION, Items.HEALING_POTION)
         )
     )
     val SUPPORTER = register(
         "supporter",
         PlayerRole(
             ItemStack.of(Material.COBWEB).name("<blue>Supporter"),
-            Items.LEATHER_ARMOR, listOf(Items.WOODEN_SWORD, Items.COBWEBS, Items.TNT, Items.BOW, Items.ARROWS)
+            Items.LEATHER_ARMOR, listOf(Items.GLOCK18, Items.COBWEBS)
         )
     )
 
@@ -40,9 +46,17 @@ object PlayerRoles : BasicRegistry<PlayerRole>() {
                 meta.basePotionType = PotionType.HEALING
             }
         }
-        val GUN get() = GunTypes.GLOCK18.createGun().item
+        val GLOCK18 get() = GunTypes.GLOCK18.createGun().item
+        val AWP get() = GunTypes.AWP.createGun().item
+        val M16 get() = GunTypes.M16.createGun().item
         val COBWEBS = ItemStack.of(Material.COBWEB, 4)
         val TNT = ItemStack.of(Material.TNT)
+        val ARMOR_NONE = listOf(
+            ItemStack.of(Material.AIR),
+            ItemStack.of(Material.AIR),
+            ItemStack.of(Material.AIR),
+            ItemStack.of(Material.AIR)
+        )
         val LEATHER_ARMOR = listOf(
             ItemStack.of(Material.AIR),
             ItemStack.of(Material.LEATHER_CHESTPLATE),

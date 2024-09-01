@@ -40,6 +40,7 @@ object CodeRedPack {
                 outputDir = File(System.getProperty("java.io.tmpdir"), "code-red-pack")
             }
 
+            // TODO: Teach rad to close the git client after using it
             assetResolutionStrategy =
                 GitAssetResolutionStrategy(
                     KGit.cloneRepository {

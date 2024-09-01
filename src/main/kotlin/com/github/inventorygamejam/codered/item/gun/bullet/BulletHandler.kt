@@ -22,8 +22,8 @@ object BulletHandler : Listener {
 
     @EventHandler
     fun onHit(event: ProjectileHitEvent) {
-        if (event.entity.uniqueId in uuids) return
-        val bullet = projectiles[event.entity] ?: return
+        if (event.entity.uniqueId !in uuids) return
+        val bullet = projectiles[event.entity] ?: error("logic error occured")
 
         event.hitEntity?.let { entity ->
             val livingEntity = entity as? LivingEntity ?: return@let

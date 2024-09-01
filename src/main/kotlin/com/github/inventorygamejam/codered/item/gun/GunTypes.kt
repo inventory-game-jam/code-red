@@ -21,7 +21,8 @@ object GunTypes : BasicRegistry<GunType>() {
             }
             bullet(BulletTypes.GLOCK18_BULLET)
             maxAmmo(30)
-            cooldown(5)
+            wholeMagazineReload(80)
+            insideMagazineReload(5)
         }
     )
     val AWP = register(
@@ -35,10 +36,28 @@ object GunTypes : BasicRegistry<GunType>() {
                 }
                 item
             }
-            bullet(BulletTypes.GLOCK18_BULLET)
-            maxAmmo(50)
-            cooldown(2)
-            zoomFactor(3)
+            bullet(BulletTypes.AWP_BULLET)
+            maxAmmo(10)
+            wholeMagazineReload(150)
+            insideMagazineReload(15)
+            zoomFactor(15)
+        }
+    )
+    val M16 = register(
+        "m16",
+        buildGunType {
+            item {
+                val item = ItemStack.of(Material.GOLDEN_SHOVEL)
+                item.editMeta { meta ->
+                    meta.setCustomModelData(3)
+                    meta.displayName("<!i>M16 Assault Rifle".mm)
+                }
+                item
+            }
+            bullet(BulletTypes.M16_BULLET)
+            maxAmmo(30)
+            wholeMagazineReload(100)
+            insideMagazineReload(3)
         }
     )
 }
