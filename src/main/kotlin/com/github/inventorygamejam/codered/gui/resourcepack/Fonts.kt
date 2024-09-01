@@ -10,6 +10,8 @@ interface UIFont {
     val packedFont: Font
     val glyphWidths: Map<Char, Int>
     val registeredSprites: List<RegisteredSprite>
+
+    fun width(text: String) = text.sumOf { char -> glyphWidths[char] ?: 0 }
 }
 
 fun registerChevyFont(

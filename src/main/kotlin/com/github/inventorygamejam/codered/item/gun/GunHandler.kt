@@ -37,13 +37,14 @@ object GunHandler : Listener {
 
     @EventHandler
     fun onPlayerSwapHandItems(event: PlayerSwapHandItemsEvent) {
-        val theItem = event.offHandItem
-        val gun = guns[theItem] ?: return
-        if(gun.isReloading || gun.ammo == gun.type.maxAmmo) return
-
-        gun.startReload()
+        val item = event.offHandItem
+        val gun = guns[item] ?: return
 
         event.isCancelled = true
+
+        if (gun.isReloading || gun.ammo == gun.type.maxAmmo) return
+
+        gun.startReload()
     }
 
     init {

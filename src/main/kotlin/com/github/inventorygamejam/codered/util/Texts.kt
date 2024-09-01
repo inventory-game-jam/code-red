@@ -3,16 +3,18 @@ package com.github.inventorygamejam.codered.util
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.negativeSpaces
 import com.github.inventorygamejam.codered.gui.resourcepack.UIFont
 import net.kyori.adventure.key.Key
+import net.kyori.adventure.key.Key.key
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.Component.translatable
 import net.kyori.adventure.text.ComponentBuilder
 import net.kyori.adventure.text.ComponentBuilderApplicable
 import net.kyori.adventure.text.ComponentLike
+import net.kyori.adventure.text.TextComponent
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.event.HoverEventSource
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
-import net.kyori.adventure.text.minimessage.MiniMessage
 import net.kyori.adventure.text.minimessage.MiniMessage.miniMessage
 
 class TextBuilder {
@@ -203,7 +205,7 @@ class TextBuilder {
     fun font(key: String) =
         apply {
             val keys = key.split(":")
-            font(Key.key(keys.first(), keys.last()))
+            font(key(keys.first(), keys.last()))
         }
 
     fun hoverEvent(event: HoverEventSource<*>) =
@@ -231,7 +233,7 @@ class TextBuilder {
             decoration(TextDecoration.BOLD, false)
         }
 
-    fun appendNegativeSpace(space: Int) =
+    fun appendSpace(space: Int) =
         apply {
             append(
                 buildText {
@@ -254,6 +256,16 @@ class TextBuilder {
 
     fun removeTextShadow() = apply {
         color("#4e5c24")
+    }
+
+    fun appendWithOffset(offset: Int, text: TextComponent) = apply {
+        val pre = negativeSpaces.getChar(offset)
+        val post = negativeSpaces.getChar(-offset)
+        append(translatable("$pre%s$post", text).font(key(negativeSpaces.fontKey.toString())))
+    }
+
+    inline fun appendWithOffset(offset: Int, block: TextBuilder.() -> Unit) = apply {
+        appendWithOffset(offset, buildText(block))
     }
 }
 

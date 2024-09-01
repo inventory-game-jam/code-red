@@ -7,7 +7,7 @@ object RegisteredSprites {
         Key("codered", "gun/scope.png"),
         '\uE000',
         256.0,
-        127.0,
+        125.0,
     )
     val CODE_RED = sprite(
         Key("codered", "gui/code_red.png"),
