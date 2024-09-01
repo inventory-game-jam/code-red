@@ -4,22 +4,18 @@ import com.github.inventorygamejam.codered.CodeRed
 import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredFonts
 import com.github.inventorygamejam.codered.item.gun.GunHandler
 import com.github.inventorygamejam.codered.util.buildText
-import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.Component.keybind
-import net.kyori.adventure.text.KeybindComponent
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
-import org.eclipse.jgit.diff.Subsequence.a
 
 object AmmoOverlay : Overlay {
     override fun render(player: Player) {
         player.sendActionBar(buildText {
             val currentItem = player.inventory.itemInMainHand
             val gun = GunHandler.guns[currentItem] ?: return
-            val color = gun.colors().entries.find {
-                (range, _) -> gun.ammo in range
+            val color = gun.colors().entries.find { (range, _) ->
+                gun.ammo in range
             }?.value ?: error("ammo value ${gun.ammo} does not have a color")
-
             val ammoText = "${gun.ammo}/${gun.type.maxAmmo}"
             val ammoTextWidth = RegisteredFonts.AMMO_OVERLAY.width(ammoText)
             appendWithOffset(200) {

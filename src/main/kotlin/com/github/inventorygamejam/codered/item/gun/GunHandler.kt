@@ -51,9 +51,9 @@ object GunHandler : Listener {
         registerEvents(this)
         Bukkit.getScheduler().runTaskTimer(CodeRed, { _ ->
             guns.forEach { (_, gun) ->
-                if(!gun.isReloading) return@forEach
-
-                val reloadPercent = (gun.type.wholeMagazineReload - gun.reloadingTicks) / gun.type.wholeMagazineReload.toDouble()
+                if (!gun.isReloading) return@forEach
+                val reloadPercent =
+                    (gun.type.wholeMagazineReload - gun.reloadingTicks) / gun.type.wholeMagazineReload.toDouble()
                 gun.ammo = (reloadPercent * gun.type.maxAmmo).roundToInt()
                 gun.reloadingTicks--
             }

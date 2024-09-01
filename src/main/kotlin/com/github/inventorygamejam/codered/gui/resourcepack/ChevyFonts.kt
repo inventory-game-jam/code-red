@@ -5,7 +5,8 @@ import kotlinx.serialization.json.Json
 import net.radstevee.packed.core.font.Font
 import java.io.File
 
-data class ChevyFont(val metaFile: File, val ttfFile: File, override val registeredSprites: List<RegisteredSprite>) : UIFont {
+data class ChevyFont(val metaFile: File, val ttfFile: File, override val registeredSprites: List<RegisteredSprite>) :
+    UIFont {
     val metadata: FontMetadata = Json.decodeFromString(metaFile.readText())
     override val glyphWidths = metadata.glyphs.associate { glyph -> glyph.char to glyph.width }.toMutableMap().apply {
         set(' ', values.first())

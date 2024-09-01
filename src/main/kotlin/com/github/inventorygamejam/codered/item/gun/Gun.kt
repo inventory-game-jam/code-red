@@ -21,9 +21,9 @@ class Gun(val type: GunType, var ammo: Int, val item: ItemStack) {
         val oneThird = (full / 3.0).roundToInt()
 
         return mapOf(
-            (twoThirds..full) to GREEN,
-            (oneThird..twoThirds) to YELLOW,
-            (0..oneThird) to RED
+            (twoThirds .. full) to GREEN,
+            (oneThird .. twoThirds) to YELLOW,
+            (0 .. oneThird) to RED
         )
     }
 }

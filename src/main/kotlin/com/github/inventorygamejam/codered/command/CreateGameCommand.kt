@@ -9,7 +9,6 @@ import kotlinx.coroutines.runBlocking
 import org.incendo.cloud.kotlin.extension.buildAndRegister
 import org.incendo.cloud.paper.PaperCommandManager
 import org.incendo.cloud.parser.standard.StringParser.quotedStringParser
-import org.incendo.cloud.suggestion.SuggestionProvider
 import org.incendo.cloud.suggestion.SuggestionProvider.suggestingStrings
 
 fun PaperCommandManager<CommandSourceStack>.registerCreateGameCommand() {

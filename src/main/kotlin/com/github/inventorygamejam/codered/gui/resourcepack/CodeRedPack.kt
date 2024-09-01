@@ -30,7 +30,7 @@ object CodeRedPack {
         )
     }
 
-    val negativeSpaces = NegativeSpaces(Key("codered", "space"), -512..512)
+    val negativeSpaces = NegativeSpaces(Key("codered", "space"), -512 .. 512)
     val assetPath = File(System.getProperty("java.io.tmpdir"), "code-red-assets")
     val pack =
         resourcePack {
@@ -39,7 +39,6 @@ object CodeRedPack {
                 description = "Inventory Game Jam: Code Red"
                 outputDir = File(System.getProperty("java.io.tmpdir"), "code-red-pack")
             }
-
             // TODO: Teach rad to close the git client after using it
             assetResolutionStrategy =
                 GitAssetResolutionStrategy(

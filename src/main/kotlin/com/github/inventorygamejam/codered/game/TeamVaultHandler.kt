@@ -1,7 +1,6 @@
 package com.github.inventorygamejam.codered.game
 
 import com.github.inventorygamejam.codered.message.Messages
-import com.github.inventorygamejam.codered.message.Messages.debug
 import com.github.inventorygamejam.codered.util.isOther
 import com.github.inventorygamejam.codered.util.removeSingle
 import org.bukkit.event.EventHandler
@@ -23,7 +22,6 @@ class TeamVaultHandler(val match: GameMatch) : Listener {
     @EventHandler
     fun onInteract(event: PlayerInteractEvent) {
         if (match.isAttacker(event.player)) return
-
         val block = event.clickedBlock ?: return
         if (!block.location.isOther(match.teamVault.location)) return
         val item = event.item ?: return

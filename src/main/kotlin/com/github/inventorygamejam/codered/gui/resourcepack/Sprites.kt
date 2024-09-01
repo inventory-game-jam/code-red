@@ -15,6 +15,6 @@ data class RegisteredSprite(val char: Char, val sprite: Sprite, var showShadow: 
         append(char.toString())
         font(font.toString())
 
-        if(!showShadow) removeTextShadow()
+        if (!showShadow) removeTextShadow()
     }
 }

@@ -23,7 +23,7 @@ class GameInstance(private val teamsCount: Int) {
     init {
         Matchmaker.matchGenerator.onMatchEnd { match ->
             teams.forEach { team ->
-                if(match.attackingTeam == team.key || match.defendingTeam == team.key) {
+                if (match.attackingTeam == team.key || match.defendingTeam == team.key) {
                     teams[team.key] = false
                 }
             }
@@ -31,7 +31,7 @@ class GameInstance(private val teamsCount: Int) {
     }
 
     fun addTeam(team: GameTeam) {
-        if(teams.size < teamsCount) {
+        if (teams.size < teamsCount) {
             teams[team] = false
         }
     }
@@ -64,7 +64,6 @@ class GameInstance(private val teamsCount: Int) {
 
                 if (!isTeamOneRunning && !isTeamTwoRunning) {
                     val isTeamOneDefending = Random.nextBoolean()
-
                     val match = GameMatch(
                         if (isTeamOneDefending) teamOne else teamTwo,
                         if (isTeamOneDefending) teamTwo else teamOne

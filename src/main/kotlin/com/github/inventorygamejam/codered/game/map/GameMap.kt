@@ -79,10 +79,11 @@ class GameMap {
     fun PrecisePoint.location() = Location(world, x, y, z)
 
     companion object {
-        val worldCreator get() = WorldCreator(NamespacedKey("codered", "game-${UUID.randomUUID()}"))
-            .biomeProvider(EmptyBiomeProvider)
-            .generator(EmptyGenerator)
-            .generateStructures(false)
-            .keepSpawnLoaded(FALSE)
+        val worldCreator
+            get() = WorldCreator(NamespacedKey("codered", "game-${UUID.randomUUID()}"))
+                .biomeProvider(EmptyBiomeProvider)
+                .generator(EmptyGenerator)
+                .generateStructures(false)
+                .keepSpawnLoaded(FALSE)
     }
 }

@@ -22,12 +22,16 @@ class TextBuilder {
 
     fun black(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.BLACK) else componentBuilder.color(NamedTextColor.BLACK)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.BLACK) else componentBuilder.color(
+                NamedTextColor.BLACK
+            )
         }
 
     fun darkRed(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.DARK_RED) else componentBuilder.color(NamedTextColor.DARK_RED)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.DARK_RED) else componentBuilder.color(
+                NamedTextColor.DARK_RED
+            )
         }
 
     fun darkPurple(colorIfAbsent: Boolean = false) =
@@ -43,12 +47,16 @@ class TextBuilder {
 
     fun gold(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.GOLD) else componentBuilder.color(NamedTextColor.GOLD)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.GOLD) else componentBuilder.color(
+                NamedTextColor.GOLD
+            )
         }
 
     fun gray(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.GRAY) else componentBuilder.color(NamedTextColor.GRAY)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.GRAY) else componentBuilder.color(
+                NamedTextColor.GRAY
+            )
         }
 
     fun darkGray(colorIfAbsent: Boolean = false) =
@@ -64,22 +72,30 @@ class TextBuilder {
 
     fun blue(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.BLUE) else componentBuilder.color(NamedTextColor.BLUE)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.BLUE) else componentBuilder.color(
+                NamedTextColor.BLUE
+            )
         }
 
     fun green(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.GREEN) else componentBuilder.color(NamedTextColor.GREEN)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.GREEN) else componentBuilder.color(
+                NamedTextColor.GREEN
+            )
         }
 
     fun aqua(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.AQUA) else componentBuilder.color(NamedTextColor.AQUA)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.AQUA) else componentBuilder.color(
+                NamedTextColor.AQUA
+            )
         }
 
     fun red(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.RED) else componentBuilder.color(NamedTextColor.RED)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.RED) else componentBuilder.color(
+                NamedTextColor.RED
+            )
         }
 
     fun lightPurple(colorIfAbsent: Boolean = false) =
@@ -95,12 +111,16 @@ class TextBuilder {
 
     fun yellow(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.YELLOW) else componentBuilder.color(NamedTextColor.YELLOW)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.YELLOW) else componentBuilder.color(
+                NamedTextColor.YELLOW
+            )
         }
 
     fun white(colorIfAbsent: Boolean = false) =
         apply {
-            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.WHITE) else componentBuilder.color(NamedTextColor.WHITE)
+            if (colorIfAbsent) componentBuilder.colorIfAbsent(NamedTextColor.WHITE) else componentBuilder.color(
+                NamedTextColor.WHITE
+            )
         }
 
     fun append(component: ComponentLike) =

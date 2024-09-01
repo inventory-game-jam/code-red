@@ -5,14 +5,10 @@ import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredSprites
 import com.github.inventorygamejam.codered.matchmaking.Matchmaker
 import com.github.inventorygamejam.codered.message.Messages
 import com.github.inventorygamejam.codered.message.Messages.broadcast
-import com.github.inventorygamejam.codered.message.Messages.debug
 import com.github.inventorygamejam.codered.message.Messages.spriteWithSubtitle
 import com.github.inventorygamejam.codered.team.GameTeam
 import com.github.inventorygamejam.codered.team.PlayerRoleManager
 import com.github.inventorygamejam.codered.util.registerEvents
-import net.kyori.adventure.audience.Audience
-import net.kyori.adventure.audience.Audience.audience
-import net.kyori.adventure.audience.ForwardingAudience
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.entity.Player
