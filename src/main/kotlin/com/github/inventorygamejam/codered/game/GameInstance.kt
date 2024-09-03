@@ -5,6 +5,7 @@ import com.github.inventorygamejam.codered.matchmaking.Matchmaker
 import com.github.inventorygamejam.codered.team.GameTeam
 import org.bukkit.Bukkit
 import kotlin.random.Random
+import com.github.inventorygamejam.codered.util.unregister
 
 /**
  * A game, basically:
@@ -18,10 +19,12 @@ class GameInstance(private val teamsCount: Int) {
      */
     private val teams: MutableMap<GameTeam, Boolean> = hashMapOf()
     private var gamesToRun: MutableMap<Pair<GameTeam, GameTeam>, Boolean> = hashMapOf()
-    var roundNumber = 1
 
     init {
         Matchmaker.matchGenerator.onMatchEnd { match ->
+            val listeners = listOf(match.lootItemHandler, match.teamVaultHandler, match.gameHandler)
+            listeners.forEach { listener -> listener.unregister()}
+
             teams.forEach { team ->
                 if (match.attackingTeam == team.key || match.defendingTeam == team.key) {
                     teams[team.key] = false

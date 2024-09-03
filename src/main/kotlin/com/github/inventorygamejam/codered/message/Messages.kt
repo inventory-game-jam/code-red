@@ -39,4 +39,6 @@ object Messages {
     const val ITEM_INSERTED = "<green>Item has been added into the team vault!"
     const val ROLE_UPDATED = "<green>Role updated!"
     const val DEFENDERS_ESCAPED = "<green>The <blue>defenders</blue> have successfully escaped and evacuated."
+    const val PLAYER_DEATH = "<red>%s was eliminated."
+    const val PLAYER_DEATH_BY_PLAYER = "<red>%s was eliminated by <blue>%s."
 }

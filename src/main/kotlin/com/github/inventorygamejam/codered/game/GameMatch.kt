@@ -31,6 +31,7 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
     )
     val lootItemHandler = LootItemHandler(this)
     val teamVaultHandler = TeamVaultHandler(this)
+    val gameHandler = GameHandler(this)
     val players get() = defendingTeam.players + attackingTeam.players
     var currentCode = GameCode.GREEN
 
@@ -38,7 +39,7 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
     fun isDefender(player: Player) = player.uniqueId in defendingTeam.uuids
 
     init {
-        registerEvents(lootItemHandler, teamVaultHandler)
+        registerEvents(lootItemHandler, teamVaultHandler, gameHandler)
 
         map.placeSpawnPointBlocks()
         map.init()

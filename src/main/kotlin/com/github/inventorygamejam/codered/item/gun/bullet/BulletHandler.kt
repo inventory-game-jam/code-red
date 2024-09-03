@@ -1,5 +1,7 @@
 package com.github.inventorygamejam.codered.item.gun.bullet
 
+import com.github.inventorygamejam.codered.CodeRed
+import com.github.inventorygamejam.codered.CodeRed.gameTeams
 import com.github.inventorygamejam.codered.util.registerEvents
 import com.github.inventorygamejam.codered.util.runTask
 import io.papermc.paper.event.entity.EntityMoveEvent
@@ -27,7 +29,12 @@ object BulletHandler : Listener {
 
         event.hitEntity?.let { entity ->
             val livingEntity = entity as? LivingEntity ?: return@let
-            livingEntity.damage(bullet.type.damage)
+            val shooter = bullet.sender.uniqueId
+            val receiver = livingEntity.uniqueId
+
+            if (gameTeams.any { team -> receiver in team.uuids && shooter in team.uuids }) return@let
+
+            livingEntity.damage(bullet.type.damage, bullet.sender)
         }
 
         event.isCancelled = true
