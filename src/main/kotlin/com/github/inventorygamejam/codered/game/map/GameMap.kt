@@ -41,6 +41,8 @@ class GameMap {
         world.setGameRule(GameRule.DO_WEATHER_CYCLE, false)
         world.setGameRule(GameRule.DO_MOB_SPAWNING, false)
         world.setGameRule(GameRule.FALL_DAMAGE, false)
+        world.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true)
+
         world.time = 1000
         world.clearWeatherDuration = 1000
     }
