@@ -21,5 +21,7 @@ class GameHandler(val match: GameMatch) : Listener {
             Messages.PLAYER_DEATH_BY_PLAYER.replaceFirst("%s", player.name).replaceFirst("%s", lastDamager.name)
         }
         event.deathMessage(message.mm)
+
+        match.handleKill(player, lastDamager)
     }
 }

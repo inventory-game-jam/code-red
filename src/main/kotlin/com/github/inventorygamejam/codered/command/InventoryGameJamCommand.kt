@@ -1,7 +1,9 @@
 package com.github.inventorygamejam.codered.command
 
+import com.github.inventorygamejam.codered.CodeRed
 import com.github.inventorygamejam.codered.message.Messages
 import com.github.inventorygamejam.codered.message.Messages.debug
+import com.github.inventorygamejam.codered.util.APITeam
 import com.github.inventorygamejam.codered.util.InventoryGameJamAPI
 import com.github.inventorygamejam.codered.util.encodeToPrettyString
 import io.papermc.paper.command.brigadier.CommandSourceStack
@@ -14,6 +16,7 @@ import org.incendo.cloud.paper.PaperCommandManager
 import org.incendo.cloud.parser.standard.IntegerParser.integerParser
 import org.incendo.cloud.parser.standard.StringParser.quotedStringParser
 import org.incendo.cloud.parser.standard.StringParser.stringParser
+import org.incendo.cloud.suggestion.SuggestionProvider.suggestingStrings
 
 fun PaperCommandManager<CommandSourceStack>.registerIGJCommand() {
     buildAndRegister("igj") {
@@ -40,7 +43,13 @@ fun PaperCommandManager<CommandSourceStack>.registerIGJCommand() {
                 literal("team").build {
                     literal("player").build {
                         literal("add").build {
-                            required("teamName", quotedStringParser<CommandSourceStack>())
+                            required("teamName", quotedStringParser<CommandSourceStack>()) {
+                                suggestionProvider(
+                                    suggestingStrings<CommandSourceStack>(
+                                        CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }
+                                    )
+                                )
+                            }
                             required("player", offlinePlayerParser<CommandSourceStack>())
 
                             suspendingHandler { ctx ->
@@ -66,7 +75,13 @@ fun PaperCommandManager<CommandSourceStack>.registerIGJCommand() {
                 literal("team").build {
                     literal("player").build {
                         literal("remove").build {
-                            required("teamName", quotedStringParser<CommandSourceStack>())
+                            required("teamName", quotedStringParser<CommandSourceStack>()) {
+                                suggestionProvider(
+                                    suggestingStrings<CommandSourceStack>(
+                                        CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }
+                                    )
+                                )
+                            }
                             required("player", offlinePlayerParser<CommandSourceStack>())
 
                             suspendingHandler { ctx ->
@@ -119,7 +134,13 @@ fun PaperCommandManager<CommandSourceStack>.registerIGJCommand() {
                 literal("score").build {
                     literal("add").build {
                         literal("team").build {
-                            required("team", stringParser<CommandSourceStack>())
+                            required("team", stringParser<CommandSourceStack>()) {
+                                suggestionProvider(
+                                    suggestingStrings<CommandSourceStack>(
+                                        CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }
+                                    )
+                                )
+                            }
                             required("amount", integerParser<CommandSourceStack>())
 
                             suspendingHandler { ctx ->

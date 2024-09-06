@@ -1,6 +1,7 @@
 package com.github.inventorygamejam.codered.game
 
 import com.github.inventorygamejam.codered.game.map.GameMap
+import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredFonts
 import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredSprites
 import com.github.inventorygamejam.codered.matchmaking.Matchmaker
 import com.github.inventorygamejam.codered.message.Messages
@@ -8,7 +9,9 @@ import com.github.inventorygamejam.codered.message.Messages.broadcast
 import com.github.inventorygamejam.codered.message.Messages.spriteWithSubtitle
 import com.github.inventorygamejam.codered.team.GameTeam
 import com.github.inventorygamejam.codered.team.PlayerRoleManager
+import com.github.inventorygamejam.codered.util.buildText
 import com.github.inventorygamejam.codered.util.registerEvents
+import com.github.inventorygamejam.codered.util.runTask
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -37,6 +40,7 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
 
     fun isAttacker(player: Player) = player.uniqueId in attackingTeam.uuids
     fun isDefender(player: Player) = player.uniqueId in defendingTeam.uuids
+    fun team(player: Player) = if (isAttacker(player)) attackingTeam else defendingTeam
 
     init {
         registerEvents(lootItemHandler, teamVaultHandler, gameHandler)
@@ -46,6 +50,11 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
         map.placeBuildings()
 
         teamVault = TeamVault(attackingTeam, map.attackerSpawns.first().clone().add(1.0, 2.0, 0.0))
+
+        players.forEach { player ->
+            player.gameMode = GameMode.ADVENTURE
+            player.inventory.clear()
+        }
 
         defendingTeam.players.forEachIndexed { i, player ->
             player.teleport(map.defenderSpawns[i].clone().add(0.0, 2.0, 0.0))
@@ -89,5 +98,48 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
         }
 
         Matchmaker.matchGenerator.endMatch(this)
+    }
+
+    fun handleKill(player: Player, killer: Player?) {
+        var actionbarMessage = "[you died]"
+        player.gameMode = GameMode.SPECTATOR
+        runTask(10 * 20) {
+            respawnPlayer(player)
+        }
+
+        if (killer != null) {
+            actionbarMessage = "you were killed by [${killer.name}]"
+
+            runTask(1) {
+                player.teleport(killer)
+            }
+
+            runTask(15) {
+                player.spectatorTarget = killer
+            }
+
+            runTask(4 * 20) {
+                player.spectatorTarget = null
+            }
+        } else {
+            runTask(1) {
+                val index = team(player).uuids.indexOf(player.uniqueId)
+                val spawn = (if (isDefender(player)) map.defenderSpawns else map.attackerSpawns)[index]
+                player.teleport(spawn)
+            }
+        }
+
+        player.sendActionBar(buildText {
+            append(actionbarMessage)
+            gray()
+            font(RegisteredFonts.BEAVER)
+        })
+    }
+
+    fun respawnPlayer(player: Player) {
+        val index = team(player).uuids.indexOf(player.uniqueId)
+        val spawn = (if (isDefender(player)) map.defenderSpawns else map.attackerSpawns)[index]
+        player.teleport(spawn.clone().add(0.0, 2.0, 0.0))
+        player.gameMode = GameMode.ADVENTURE
     }
 }

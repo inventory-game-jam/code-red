@@ -8,6 +8,7 @@ object RegisteredFonts {
     )
     val AMMO_OVERLAY = registerChevyFont("beaver_mono", 57.0, 1.75)
     val AMMO_OVERLAY_SUB = registerChevyFont("beaver_mono", 45.0, 1.0)
+    val BEAVER = registerChevyFont("beaver_upper")
 
     fun init() {
         // Initialise all properties reflectively

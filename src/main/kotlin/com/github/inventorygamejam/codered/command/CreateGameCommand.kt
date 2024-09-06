@@ -16,14 +16,14 @@ fun PaperCommandManager<CommandSourceStack>.registerCreateGameCommand() {
         required("team1", quotedStringParser<CommandSourceStack>()) {
             suggestionProvider(
                 suggestingStrings<CommandSourceStack>(
-                    "\"" + CodeRed.apiTeams.map(APITeam::name) + "\""
+                    CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }
                 )
             )
         }
         required("team2", quotedStringParser<CommandSourceStack>()) {
             suggestionProvider(
                 suggestingStrings<CommandSourceStack>(
-                    "\"" + CodeRed.apiTeams.map(APITeam::name) + "\""
+                    CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }
                 )
             )
         }
