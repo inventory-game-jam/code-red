@@ -8,5 +8,5 @@
   - ~~Add gun registry~~ Finished!
   - ~~Add gun lambda builder~~ Finished!
   - ~~Make bullet velocity and damage variable~~ Finished!
-- Add a killcam
+- ~~Add a killcam~~ Finished!
 - add a post-game stats menu, including kills, total damage dealt, etc.
