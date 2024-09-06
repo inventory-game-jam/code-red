@@ -38,10 +38,12 @@ object CodeRed : SuspendingJavaPlugin() {
             config.getString("ghPat") ?: error("No github PAT specified! This is needed for cloning the asset repo!")
 
         logger.info("Fetching teams...")
+        val startTime = System.currentTimeMillis()
         apiTeams = InventoryGameJamAPI.getTeams()
         gameTeams = apiTeams.map { apiTeam ->
             GameTeam(apiTeam.name, mutableListOf())
         }
+        logger.info("Fetching teams took ${System.currentTimeMillis() - startTime}ms")
 
         CodeRedPack.init()
         CodeRedPack.save()

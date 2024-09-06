@@ -23,6 +23,9 @@ object GunTypes : BasicRegistry<GunType>() {
             maxAmmo(30)
             wholeMagazineReload(80)
             insideMagazineReload(5)
+
+            verticalRecoil(1f)
+            horizontalRecoil(0.5f)
         }
     )
     val AWP = register(
@@ -41,6 +44,9 @@ object GunTypes : BasicRegistry<GunType>() {
             wholeMagazineReload(150)
             insideMagazineReload(15)
             zoomFactor(15)
+
+            verticalRecoil(15f)
+            horizontalRecoil(4f)
         }
     )
     val M16 = register(
@@ -58,6 +64,9 @@ object GunTypes : BasicRegistry<GunType>() {
             maxAmmo(30)
             wholeMagazineReload(100)
             insideMagazineReload(3)
+
+            verticalRecoil(3f)
+            horizontalRecoil(1f)
         }
     )
 }

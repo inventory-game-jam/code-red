@@ -9,6 +9,7 @@ import net.kyori.adventure.text.Component.empty
 import net.kyori.adventure.title.Title.Times.times
 import net.kyori.adventure.title.Title.title
 import org.bukkit.Material
+import org.bukkit.Particle
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
@@ -25,6 +26,8 @@ class GunType private constructor(
     val zoomFactor: Int = 2,
     val scopeSprite: RegisteredSprite? = RegisteredSprites.SCOPE,
     val shootSound: Sound = Sounds.GUN_FIRE,
+    val verticalRecoil: Float,
+    val horizontalRecoil: Float
 ) {
     fun showScope(show: Boolean, player: Player) {
         if (scopeSprite == null) return
@@ -56,7 +59,19 @@ class GunType private constructor(
         val origin = player.location.add(0.0, 1.4, 0.0)
         player.setCooldown(item.type, insideMagazineReload)
         bullet.createBullet(player, origin, player.eyeLocation.direction)
+        player.world.spawnParticle(
+            Particle.LARGE_SMOKE,
+            player.location.x,
+            player.location.y + 1,
+            player.location.z,
+            2,
+            0.0, 0.0, 0.0, 1.0,
+            null, true
+        )
         player.playSound(shootSound)
+
+        // recoil moment
+        player.setRotation(player.yaw - horizontalRecoil, Math.clamp(player.pitch - verticalRecoil, -87.0f, 87.0f))
     }
 
     fun createGun(): Gun {
@@ -74,6 +89,8 @@ class GunType private constructor(
         private var zoomFactor: Int = 2
         private var scopeSprite: RegisteredSprite? = RegisteredSprites.SCOPE
         private var shootSound: Sound = Sounds.GUN_FIRE
+        private var verticalRecoil: Float = 1.0f
+        private var horizontalRecoil: Float = 1.0f
 
         fun item(item: () -> ItemStack) = apply { this.item = item }
         fun bullet(bullet: BulletType) = apply { this.bullet = bullet }
@@ -83,6 +100,8 @@ class GunType private constructor(
         fun zoomFactor(zoomFactor: Int) = apply { this.zoomFactor = zoomFactor }
         fun scopeSprite(scopeSprite: RegisteredSprite?) = apply { this.scopeSprite = scopeSprite }
         fun shootSound(shootSound: Sound) = apply { this.shootSound = shootSound }
+        fun verticalRecoil(verticalRecoil: Float) = apply { this.verticalRecoil = verticalRecoil }
+        fun horizontalRecoil(horizontalRecoil: Float) = apply { this.horizontalRecoil = horizontalRecoil }
 
         fun build(): GunType {
             return GunType(
@@ -94,6 +113,8 @@ class GunType private constructor(
                 zoomFactor,
                 scopeSprite,
                 shootSound,
+                verticalRecoil,
+                horizontalRecoil
             )
         }
     }

@@ -1,5 +1,6 @@
 package com.github.inventorygamejam.codered.item.gun.bullet
 
+import com.github.inventorygamejam.codered.CodeRed
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -18,6 +19,7 @@ class BulletType(
             entity.shooter = sender
             entity.direction = viewVector
             entity.acceleration = viewVector.multiply(velocityPerBlock)
+            entity.isInvisible = true
         }
         val bullet = Bullet(this, sender, projectile, origin)
         BulletHandler.bullets.add(bullet)
@@ -28,7 +30,7 @@ class BulletType(
         val BULLET_ITEM =
             ItemStack.of(Material.POPPED_CHORUS_FRUIT).apply {
                 editMeta { meta ->
-                    meta.setCustomModelData(1)
+                    meta.setCustomModelData(3)
                 }
             }
     }

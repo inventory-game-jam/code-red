@@ -1,10 +1,10 @@
 package com.github.inventorygamejam.codered.item.gun.bullet
 
-import com.github.inventorygamejam.codered.CodeRed
 import com.github.inventorygamejam.codered.CodeRed.gameTeams
 import com.github.inventorygamejam.codered.util.registerEvents
 import com.github.inventorygamejam.codered.util.runTask
 import io.papermc.paper.event.entity.EntityMoveEvent
+import org.bukkit.Particle
 import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
@@ -35,6 +35,17 @@ object BulletHandler : Listener {
             if (gameTeams.any { team -> receiver in team.uuids && shooter in team.uuids }) return@let
 
             livingEntity.damage(bullet.type.damage, bullet.sender)
+            livingEntity.world.spawnParticle(
+                Particle.CRIT,
+                livingEntity.location.x,
+                livingEntity.location.y + 1,
+                livingEntity.location.z,
+                10,
+                0.0, 0.0, 0.0,
+                1.0,
+                null,
+                true
+            )
         }
 
         event.isCancelled = true
