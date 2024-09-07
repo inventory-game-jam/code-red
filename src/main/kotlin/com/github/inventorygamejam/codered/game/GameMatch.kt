@@ -3,9 +3,12 @@ package com.github.inventorygamejam.codered.game
 import com.github.inventorygamejam.codered.game.map.GameMap
 import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredFonts
 import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredSprites
+import com.github.inventorygamejam.codered.handler.MainObjectiveBuildHandler
+import com.github.inventorygamejam.codered.handler.MainObjectiveBuildHandler.MAIN_OBJECTIVE_TAG_KEY
 import com.github.inventorygamejam.codered.matchmaking.Matchmaker
 import com.github.inventorygamejam.codered.message.Messages
 import com.github.inventorygamejam.codered.message.Messages.broadcast
+import com.github.inventorygamejam.codered.message.Messages.debug
 import com.github.inventorygamejam.codered.message.Messages.spriteWithSubtitle
 import com.github.inventorygamejam.codered.team.GameTeam
 import com.github.inventorygamejam.codered.team.PlayerRoleManager
@@ -13,7 +16,10 @@ import com.github.inventorygamejam.codered.util.buildText
 import com.github.inventorygamejam.codered.util.registerEvents
 import com.github.inventorygamejam.codered.util.runTask
 import org.bukkit.GameMode
+import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.entity.Entity
+import org.bukkit.entity.Marker
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
@@ -37,6 +43,7 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
     val gameHandler = GameHandler(this)
     val players get() = defendingTeam.players + attackingTeam.players
     var currentCode = GameCode.GREEN
+    var mainObjectiveLocations = listOf<Location>()
 
     fun isAttacker(player: Player) = player.uniqueId in attackingTeam.uuids
     fun isDefender(player: Player) = player.uniqueId in defendingTeam.uuids
@@ -45,9 +52,9 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
     init {
         registerEvents(lootItemHandler, teamVaultHandler, gameHandler)
 
-        map.placeSpawnPointBlocks()
+        // map.placeSpawnPointBlocks()
         map.init()
-        map.placeBuildings()
+        // map.placeBuildings()
 
         teamVault = TeamVault(attackingTeam, map.attackerSpawns.first().clone().add(1.0, 2.0, 0.0))
 
@@ -57,14 +64,23 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
         }
 
         defendingTeam.players.forEachIndexed { i, player ->
-            player.teleport(map.defenderSpawns[i].clone().add(0.0, 2.0, 0.0))
+            player.teleport(map.defenderSpawns[i])
 
             PlayerRoleManager[player]?.equipItems(player)
         }
         attackingTeam.players.forEachIndexed { i, player ->
-            player.teleport(map.attackerSpawns[i].clone().add(0.0, 2.0, 0.0))
+            player.teleport(map.attackerSpawns[i])
 
             PlayerRoleManager[player]?.equipItems(player)
+        }
+        val markers = map.world.getEntitiesByClasses(Marker::class.java)
+        mainObjectiveLocations = markers
+            .filter { marker -> MAIN_OBJECTIVE_TAG_KEY in marker.scoreboardTags }
+            .map(Entity::getLocation)
+            .map(Location::toBlockLocation)
+
+        mainObjectiveLocations.forEach { location ->
+            debug(location.toString())
         }
     }
 

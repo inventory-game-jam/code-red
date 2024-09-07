@@ -10,13 +10,13 @@ import com.github.inventorygamejam.codered.gui.AmmoOverlay
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.assetPath
 import com.github.inventorygamejam.codered.handler.GeneralPlayerHandler
+import com.github.inventorygamejam.codered.handler.MainObjectiveBuildHandler
 import com.github.inventorygamejam.codered.item.gun.GunHandler
 import com.github.inventorygamejam.codered.item.gun.bullet.BulletHandler
 import com.github.inventorygamejam.codered.team.GameTeam
 import com.github.inventorygamejam.codered.util.APITeam
 import com.github.inventorygamejam.codered.util.InventoryGameJamAPI
 import com.github.shynixn.mccoroutine.bukkit.SuspendingJavaPlugin
-import com.github.shynixn.mccoroutine.bukkit.registerSuspendingEvents
 import com.noxcrew.interfaces.InterfacesListeners
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import kotlinx.serialization.json.Json
@@ -50,13 +50,12 @@ object CodeRed : SuspendingJavaPlugin() {
         CodeRedPack.upload()
 
         BulletHandler
-
+        GeneralPlayerHandler
+        MainObjectiveBuildHandler
         GunHandler
         AmmoOverlay
 
         InterfacesListeners.install(this)
-
-        server.pluginManager.registerSuspendingEvents(GeneralPlayerHandler, this)
 
         gameMapConfig = Json.decodeFromString(File(assetPath, "configs/map_config.json").readText())
 

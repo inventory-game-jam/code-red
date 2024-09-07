@@ -5,11 +5,16 @@ import com.github.inventorygamejam.codered.CodeRed.apiTeams
 import com.github.inventorygamejam.codered.CodeRed.gameTeams
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.sendPack
 import com.github.inventorygamejam.codered.util.APIPlayer
+import com.github.inventorygamejam.codered.util.registerEvents
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 
 object GeneralPlayerHandler : Listener {
+    init {
+        registerEvents(this)
+    }
+
     @EventHandler
     fun onJoin(event: PlayerJoinEvent) {
         val player = event.player

@@ -15,6 +15,7 @@ repositories {
     maven("https://maven.radsteve.net/public")
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://maven.noxcrew.com/public")
+    maven("https://maven.enginehub.org/repo/")
 }
 
 dependencies {
@@ -34,6 +35,9 @@ dependencies {
     implementation("com.noxcrew.interfaces:interfaces:1.2.1-SNAPSHOT") {
         exclude("io.papermc.paper", "paper-api")
     }
+    implementation(platform("com.intellectualsites.bom:bom-newest:1.48")) // Ref: https://github.com/IntellectualSites/bom
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core")
+    compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit") { isTransitive = false }
 
     paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 }

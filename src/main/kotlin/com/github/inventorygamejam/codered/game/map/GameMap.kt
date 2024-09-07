@@ -2,6 +2,10 @@ package com.github.inventorygamejam.codered.game.map
 
 import com.github.inventorygamejam.codered.CodeRed.gameMapConfig
 import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.assetPath
+import com.sk89q.worldedit.bukkit.BukkitAdapter
+import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormats
+import com.sk89q.worldedit.extent.clipboard.io.ClipboardReader
+import com.sk89q.worldedit.math.BlockVector3
 import net.kyori.adventure.util.TriState.FALSE
 import org.bukkit.Bukkit
 import org.bukkit.GameRule
@@ -19,7 +23,7 @@ import java.util.concurrent.ThreadLocalRandom
 class GameMap {
     val world = Bukkit.createWorld(worldCreator) ?: error("failed to create world")
     private val structureManager = Bukkit.getServer().structureManager
-    val floorSchematic = structureManager.loadStructure(File(assetPath, "schematics/floor.nbt"))
+    val mapSchematic = File(assetPath, "schematics/map.schem")
     val buildingFiles = File(assetPath, "schematics/buildings").listFiles()?.toList() ?: emptyList()
     val buildings = buildingFiles.map { file -> structureManager.loadStructure(file) }
     val attackerSpawns = gameMapConfig.attackerSpawnPoints.map { point -> point.location() }
@@ -27,7 +31,7 @@ class GameMap {
     private val random = ThreadLocalRandom.current()
 
     fun init() {
-        floorSchematic.place(
+        /* floorSchematic.place(
             Location(world, 0.0, 64.0, 0.0),
             true,
             StructureRotation.NONE,
@@ -35,7 +39,11 @@ class GameMap {
             0,
             1f,
             random
-        )
+        ) */
+        val clipFormat = ClipboardFormats.findByFile(mapSchematic) ?: error("failed to find clipboard format")
+        val reader = clipFormat.getReader(mapSchematic.inputStream())
+        val clipboard = reader.use(ClipboardReader::read)
+        clipboard.paste(BukkitAdapter.adapt(world), BlockVector3.ZERO.add(0, 128, 0))
 
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false)
         world.setGameRule(GameRule.DO_WEATHER_CYCLE, false)
