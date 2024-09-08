@@ -6,6 +6,7 @@ import com.github.inventorygamejam.codered.message.Messages
 import com.github.inventorygamejam.codered.message.Messages.debug
 import com.github.inventorygamejam.codered.util.InventoryGameJamAPI
 import com.github.inventorygamejam.codered.util.encodeToPrettyString
+import com.github.shynixn.mccoroutine.bukkit.launch
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import kotlinx.serialization.json.Json
 import org.bukkit.OfflinePlayer
@@ -14,7 +15,6 @@ import org.incendo.cloud.bukkit.parser.OfflinePlayerParser.offlinePlayerParser
 import org.incendo.cloud.kotlin.coroutines.extension.suspendingHandler
 import org.incendo.cloud.kotlin.extension.buildAndRegister
 import org.incendo.cloud.paper.PaperCommandManager
-import org.incendo.cloud.parser.standard.BooleanParser
 import org.incendo.cloud.parser.standard.BooleanParser.booleanParser
 import org.incendo.cloud.parser.standard.IntegerParser.integerParser
 import org.incendo.cloud.parser.standard.StringParser.quotedStringParser
@@ -146,6 +146,17 @@ fun PaperCommandManager<CommandSourceStack>.registerIGJCommand() {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    buildAndRegister("igj") {
+        permission("minecraft.op")
+        literal("debug").build {
+            literal("refresh").build {
+                CodeRed.launch {
+                    CodeRed.fetchTeams()
                 }
             }
         }

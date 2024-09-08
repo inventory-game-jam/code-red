@@ -1,8 +1,8 @@
 # TODO
-- Finish mapgen
-- Create more buildings for mapgen
+- ~~Finish mapgen~~ Cancelled mapgen in favor of pre-built maps
+- ~~Create more buildings for mapgen~~ Cancelled mapgen in favor of pre-built maps
 - Make the main objective
-- Better role selection
+- ~~Better role selection~~ Cancelled, already fine
 - Make proper loot generation (preferably inside of buildings)
 - ~~Rewrite the whole gun, bullet and ammo system~~ Finished!
   - ~~Add gun registry~~ Finished!

@@ -37,13 +37,7 @@ object CodeRed : SuspendingJavaPlugin() {
         ghPat =
             config.getString("ghPat") ?: error("No github PAT specified! This is needed for cloning the asset repo!")
 
-        logger.info("Fetching teams...")
-        val startTime = System.currentTimeMillis()
-        apiTeams = InventoryGameJamAPI.getTeams()
-        gameTeams = apiTeams.map { apiTeam ->
-            GameTeam(apiTeam.name, mutableListOf())
-        }
-        logger.info("Fetching teams took ${System.currentTimeMillis() - startTime}ms")
+        fetchTeams()
 
         CodeRedPack.init()
         CodeRedPack.save()
@@ -67,6 +61,14 @@ object CodeRed : SuspendingJavaPlugin() {
     }
 
     override suspend fun onDisableAsync() {}
+
+    suspend fun fetchTeams() {
+        logger.info("Fetching teams...")
+        val startTime = System.currentTimeMillis()
+        apiTeams = InventoryGameJamAPI.getTeams()
+        gameTeams = apiTeams.map { apiTeam -> apiTeam.toGameTeam() }
+        logger.info("Fetching teams took ${System.currentTimeMillis() - startTime}ms")
+    }
 
     lateinit var commandManager: PaperCommandManager<CommandSourceStack>
     lateinit var apiTeams: List<APITeam>
