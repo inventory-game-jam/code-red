@@ -18,6 +18,9 @@ import com.github.inventorygamejam.codered.util.APITeam
 import com.github.inventorygamejam.codered.util.InventoryGameJamAPI
 import com.github.shynixn.mccoroutine.bukkit.SuspendingJavaPlugin
 import com.noxcrew.interfaces.InterfacesListeners
+import com.sk89q.worldedit.extent.clipboard.Clipboard
+import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormats
+import com.sk89q.worldedit.extent.clipboard.io.ClipboardReader
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import kotlinx.serialization.json.Json
 import org.incendo.cloud.brigadier.BrigadierSetting
@@ -53,6 +56,14 @@ object CodeRed : SuspendingJavaPlugin() {
 
         gameMapConfig = Json.decodeFromString(File(assetPath, "configs/map_config.json").readText())
 
+        logger.info("Initialising schematic...")
+        val startTime = System.currentTimeMillis()
+        val mapSchematicFile = File(assetPath, "schematics/map.schem")
+        val clipFormat = ClipboardFormats.findByFile(mapSchematicFile) ?: error("failed to find clipboard format")
+        val reader = clipFormat.getReader(mapSchematicFile.inputStream())
+        mapSchematic = reader.use(ClipboardReader::read)
+        logger.info("Initialising schematic took ${System.currentTimeMillis() - startTime}ms")
+
         commandManager.registerGunCommand()
         commandManager.registerCreateGameCommand()
         commandManager.registerRefreshAssetsCommand()
@@ -77,4 +88,5 @@ object CodeRed : SuspendingJavaPlugin() {
     lateinit var ghUsername: String
     lateinit var ghPat: String
     lateinit var gameMapConfig: GameMapConfig
+    lateinit var mapSchematic: Clipboard
 }

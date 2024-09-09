@@ -1,6 +1,6 @@
 package com.github.inventorygamejam.codered.item.gun.bullet
 
-import com.github.inventorygamejam.codered.CodeRed
+import com.github.inventorygamejam.codered.util.withCustomModelData
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -27,11 +27,6 @@ class BulletType(
     }
 
     companion object {
-        val BULLET_ITEM =
-            ItemStack.of(Material.POPPED_CHORUS_FRUIT).apply {
-                editMeta { meta ->
-                    meta.setCustomModelData(3)
-                }
-            }
+        val BULLET_ITEM = ItemStack.of(Material.POPPED_CHORUS_FRUIT).withCustomModelData(3)
     }
 }

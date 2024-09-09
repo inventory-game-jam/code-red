@@ -10,9 +10,9 @@ import org.incendo.cloud.suggestion.SuggestionProvider
 
 fun PaperCommandManager<CommandSourceStack>.registerGunCommand() {
     buildAndRegister("gun") {
-        required("type", StringParser.stringParser<CommandSourceStack>()) {
+        required("type", StringParser.stringParser()) {
             suggestionProvider(
-                SuggestionProvider.suggestingStrings<CommandSourceStack>(GunTypes.keys)
+                SuggestionProvider.suggestingStrings(GunTypes.keys)
             )
         }
         handler { ctx ->

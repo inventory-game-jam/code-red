@@ -16,3 +16,7 @@ loot items whilst defending the main objective from the attackers. If the
 attackers destroy the main objective before the defenders have finished
 crafting, it is **Code RED** and the attackers win the match. If the defenders
 finish before the attackers, it is **Code GREEN** and the defenders win.
+
+## Scoring
+For each kill, a player gets **20 coins**.
+For a win, a team gets **100** coins each.

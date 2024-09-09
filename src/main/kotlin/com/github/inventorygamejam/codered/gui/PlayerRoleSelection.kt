@@ -5,7 +5,8 @@ import com.github.inventorygamejam.codered.message.Messages
 import com.github.inventorygamejam.codered.team.PlayerRoleManager
 import com.github.inventorygamejam.codered.team.PlayerRoles
 import com.github.inventorygamejam.codered.util.mm
-import com.github.inventorygamejam.codered.util.name
+import com.github.inventorygamejam.codered.util.withName
+import com.github.inventorygamejam.codered.util.withoutTooltip
 import com.github.shynixn.mccoroutine.bukkit.launch
 import com.noxcrew.interfaces.drawable.Drawable.Companion.drawable
 import com.noxcrew.interfaces.element.StaticElement
@@ -35,9 +36,9 @@ object PlayerRoleSelection {
         withTransform { pane, _ ->
             forEachInGrid(3, 9) { row, column ->
                 if (pane.has(row, column)) return@forEachInGrid
-
                 val item = ItemStack.of(Material.GRAY_STAINED_GLASS_PANE)
-                    .name("")
+                    .withName("")
+                    .withoutTooltip()
 
                 pane[row, column] = StaticElement(drawable(item))
             }

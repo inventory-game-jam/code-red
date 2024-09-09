@@ -6,5 +6,6 @@ import kotlinx.serialization.Serializable
 data class GameMapConfig(
     val attackerSpawnPoints: List<DirectionedPrecisePoint>,
     val defenderSpawnPoints: List<DirectionedPrecisePoint>,
-    val buildings: List<BlockPoint>,
+    val vaultLocation: BlockPoint,
+    val lootItems: List<DirectionedPrecisePoint>,
 )

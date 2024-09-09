@@ -10,19 +10,11 @@ import org.incendo.cloud.suggestion.SuggestionProvider.suggestingStrings
 
 fun PaperCommandManager<CommandSourceStack>.registerCreateGameCommand() {
     buildAndRegister("creategame") {
-        required("team1", quotedStringParser<CommandSourceStack>()) {
-            suggestionProvider(
-                suggestingStrings<CommandSourceStack>(
-                    CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }
-                )
-            )
+        required("team1", quotedStringParser()) {
+            suggestionProvider(suggestingStrings(CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }))
         }
-        required("team2", quotedStringParser<CommandSourceStack>()) {
-            suggestionProvider(
-                suggestingStrings<CommandSourceStack>(
-                    CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }
-                )
-            )
+        required("team2", quotedStringParser()) {
+            suggestionProvider(suggestingStrings(CodeRed.apiTeams.map { apiTeam -> "\"${apiTeam.name}\"" }))
         }
 
         handler { ctx ->

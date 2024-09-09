@@ -3,6 +3,7 @@ package com.github.inventorygamejam.codered.item.gun
 import com.github.inventorygamejam.codered.item.gun.GunType.Companion.buildGunType
 import com.github.inventorygamejam.codered.item.gun.bullet.BulletTypes
 import com.github.inventorygamejam.codered.util.BasicRegistry
+import com.github.inventorygamejam.codered.util.editItemMeta
 import com.github.inventorygamejam.codered.util.mm
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
@@ -13,11 +14,11 @@ object GunTypes : BasicRegistry<GunType>() {
         buildGunType {
             item {
                 val item = ItemStack.of(Material.GOLDEN_SHOVEL)
-                item.editMeta { meta ->
-                    meta.setCustomModelData(1)
-                    meta.displayName("<!i>Glock 18".mm)
+                item.editItemMeta {
+                    setCustomModelData(1)
+                    displayName("<!i>Glock 18".mm)
+                    isUnbreakable = true
                 }
-                item
             }
             bullet(BulletTypes.GLOCK18_BULLET)
             maxAmmo(30)
@@ -33,11 +34,11 @@ object GunTypes : BasicRegistry<GunType>() {
         buildGunType {
             item {
                 val item = ItemStack.of(Material.GOLDEN_SHOVEL)
-                item.editMeta { meta ->
-                    meta.setCustomModelData(2)
-                    meta.displayName("<!i>AWP".mm)
+                item.editItemMeta {
+                    setCustomModelData(2)
+                    displayName("<!i>AWP".mm)
+                    isUnbreakable = true
                 }
-                item
             }
             bullet(BulletTypes.AWP_BULLET)
             maxAmmo(10)
@@ -54,11 +55,11 @@ object GunTypes : BasicRegistry<GunType>() {
         buildGunType {
             item {
                 val item = ItemStack.of(Material.GOLDEN_SHOVEL)
-                item.editMeta { meta ->
-                    meta.setCustomModelData(3)
-                    meta.displayName("<!i>M16 Assault Rifle".mm)
+                item.editItemMeta {
+                    setCustomModelData(3)
+                    displayName("<!i>M16 Assault Rifle".mm)
+                    isUnbreakable = true
                 }
-                item
             }
             bullet(BulletTypes.M16_BULLET)
             maxAmmo(30)

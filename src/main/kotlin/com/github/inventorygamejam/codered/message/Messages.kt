@@ -41,4 +41,13 @@ object Messages {
     const val DEFENDERS_ESCAPED = "<green>The <blue>defenders</blue> have successfully escaped and evacuated."
     const val PLAYER_DEATH = "<red>%s was eliminated."
     const val PLAYER_DEATH_BY_PLAYER = "<red>%s was eliminated by <blue>%s."
+    const val MAIN_OBJECTIVE_NOT_DESTROYABLE = "<red>In order to destroy the main objective, it needs to be code yellow!"
+    private const val TIP_1 =
+        "<aqua>To <green>win</green> as a <blue>defender</blue>, you need to collect all <gray>iron ingots</gray> and deposit them into your teams vault. The <red>attackers</red> need to prevent that."
+    private const val TIP_2 =
+        "<aqua>As an <red>attacker</red>, your main goal is to prevent the <blue>defenders</blue> from collecting all the <gray>iron ingots</gray>. You can do this by eliminating them or by destroying the main objective when it's <yellow>Code YELLOW</yellow>."
+    private const val TIP_3 = "<aqua>Remember, buildings across the map may contain some loot. This loot can give you an advantage in the game."
+    private const val TIP_4 =
+        "<aqua>Coins are important! Each kill gets you <gold>20 coins</gold>, and a win gets your team <gold>100 coins</gold> each."
+    val TIPS = listOf(TIP_1, TIP_2, TIP_3, TIP_4, TIP_4)
 }

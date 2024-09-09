@@ -1,81 +1,42 @@
 package com.github.inventorygamejam.codered.game.map
 
 import com.github.inventorygamejam.codered.CodeRed.gameMapConfig
-import com.github.inventorygamejam.codered.gui.resourcepack.CodeRedPack.assetPath
+import com.github.inventorygamejam.codered.CodeRed.mapSchematic
 import com.sk89q.worldedit.bukkit.BukkitAdapter
-import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormats
-import com.sk89q.worldedit.extent.clipboard.io.ClipboardReader
 import com.sk89q.worldedit.math.BlockVector3
 import net.kyori.adventure.util.TriState.FALSE
 import org.bukkit.Bukkit
 import org.bukkit.GameRule
 import org.bukkit.Location
-import org.bukkit.Material.BLUE_STAINED_GLASS
-import org.bukkit.Material.RED_STAINED_GLASS
+import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.WorldCreator
-import org.bukkit.block.structure.Mirror
-import org.bukkit.block.structure.StructureRotation
-import java.io.File
 import java.util.UUID
-import java.util.concurrent.ThreadLocalRandom
 
 class GameMap {
     val world = Bukkit.createWorld(worldCreator) ?: error("failed to create world")
-    private val structureManager = Bukkit.getServer().structureManager
-    val mapSchematic = File(assetPath, "schematics/map.schem")
-    val buildingFiles = File(assetPath, "schematics/buildings").listFiles()?.toList() ?: emptyList()
-    val buildings = buildingFiles.map { file -> structureManager.loadStructure(file) }
-    val attackerSpawns = gameMapConfig.attackerSpawnPoints.map { point -> point.location() }
-    val defenderSpawns = gameMapConfig.defenderSpawnPoints.map { point -> point.location() }
-    private val random = ThreadLocalRandom.current()
+    val attackerSpawns = gameMapConfig.attackerSpawnPoints.map { point -> point.location().add(0.5, 0.0, 0.5) }
+    val defenderSpawns = gameMapConfig.defenderSpawnPoints.map { point -> point.location().add(0.5, 0.0, 0.5) }
+    val vaultLocation = gameMapConfig.vaultLocation.location()
 
     fun init() {
-        /* floorSchematic.place(
-            Location(world, 0.0, 64.0, 0.0),
-            true,
-            StructureRotation.NONE,
-            Mirror.NONE,
-            0,
-            1f,
-            random
-        ) */
-        val clipFormat = ClipboardFormats.findByFile(mapSchematic) ?: error("failed to find clipboard format")
-        val reader = clipFormat.getReader(mapSchematic.inputStream())
-        val clipboard = reader.use(ClipboardReader::read)
-        clipboard.paste(BukkitAdapter.adapt(world), BlockVector3.ZERO.add(0, 128, 0))
+        mapSchematic.paste(BukkitAdapter.adapt(world), BlockVector3.ZERO.add(0, 128, 0))
 
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false)
         world.setGameRule(GameRule.DO_WEATHER_CYCLE, false)
         world.setGameRule(GameRule.DO_MOB_SPAWNING, false)
         world.setGameRule(GameRule.FALL_DAMAGE, false)
         world.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true)
+        world.setGameRule(GameRule.KEEP_INVENTORY, true)
+        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false)
 
         world.time = 1000
         world.clearWeatherDuration = 1000
     }
 
-    fun placeSpawnPointBlocks() {
-        defenderSpawns.forEach { spawn ->
-            spawn.clone().add(0.0, 1.0, 0.0).block.type = BLUE_STAINED_GLASS
-        }
-        attackerSpawns.forEach { spawn ->
-            spawn.clone().add(0.0, 1.0, 0.0).block.type = RED_STAINED_GLASS
-        }
-    }
-
-    fun placeBuildings() {
-        gameMapConfig.buildings.forEach { position ->
-            val building = buildings.random()
-            building.place(
-                position.location(),
-                true,
-                StructureRotation.NONE,
-                Mirror.NONE,
-                0,
-                1f,
-                random
-            )
+    fun removeSpawnPointBlocks() {
+        defenderSpawns + attackerSpawns.forEach { spawn ->
+            spawn.clone().subtract(0.5, 0.0, 0.5).block.type = Material.AIR
         }
     }
 
