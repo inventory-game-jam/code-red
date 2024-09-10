@@ -43,7 +43,7 @@ object GunTypes : BasicRegistry<GunType>() {
             bullet(BulletTypes.AWP_BULLET)
             maxAmmo(10)
             wholeMagazineReload(150)
-            insideMagazineReload(15)
+            insideMagazineReload(30)
             zoomFactor(15)
 
             verticalRecoil(15f)

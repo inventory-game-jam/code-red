@@ -16,13 +16,11 @@ object Messages {
     fun CommandSender.debug(message: String) = sendRichMessage("<dark_gray>Debug | </dark_gray> $message")
 
     fun title(message: String) = getServer().showTitle(title(message.mm, empty()))
-    fun spriteWithSubtitle(sprite: RegisteredSprite, subtitle: String) =
-        getServer().showTitle(title(sprite.component(), subtitle.mm))
+    fun spriteWithSubtitle(sprite: RegisteredSprite, subtitle: String) = getServer().showTitle(title(sprite.component(), subtitle.mm))
 
-    fun GameMatch.broadcast(message: String) = players.forEach { player -> player.sendMessage(message.mm) }
-    fun GameMatch.title(message: String) = players.forEach { player -> player.showTitle(title(message.mm, empty())) }
-    fun GameMatch.spriteWithSubtitle(sprite: RegisteredSprite, subtitle: String) =
-        players.forEach { player -> player.showTitle(title(sprite.component(), subtitle.mm)) }
+    fun GameMatch.broadcast(message: String) = map.world.sendMessage(message.mm)
+    fun GameMatch.title(message: String) = map.world.showTitle(title(message.mm, empty()))
+    fun GameMatch.spriteWithSubtitle(sprite: RegisteredSprite, subtitle: String) = map.world.showTitle(title(sprite.component(), subtitle.mm))
 
     const val CODE_RED = "<gray>Code <red>RED"
     const val CODE_YELLOW = "<gray>Code <yellow>YELLOW"
@@ -41,7 +39,7 @@ object Messages {
     const val DEFENDERS_ESCAPED = "<green>The <blue>defenders</blue> have successfully escaped and evacuated."
     const val PLAYER_DEATH = "<red>%s was eliminated."
     const val PLAYER_DEATH_BY_PLAYER = "<red>%s was eliminated by <blue>%s."
-    const val MAIN_OBJECTIVE_NOT_DESTROYABLE = "<red>In order to destroy the main objective, it needs to be code yellow!"
+    const val MAIN_OBJECTIVE_NOT_DESTROYABLE = "<red>In order to destroy the main objective, it needs to be $CODE_YELLOW!"
     private const val TIP_1 =
         "<aqua>To <green>win</green> as a <blue>defender</blue>, you need to collect all <gray>iron ingots</gray> and deposit them into your teams vault. The <red>attackers</red> need to prevent that."
     private const val TIP_2 =
@@ -50,4 +48,5 @@ object Messages {
     private const val TIP_4 =
         "<aqua>Coins are important! Each kill gets you <gold>20 coins</gold>, and a win gets your team <gold>100 coins</gold> each."
     val TIPS = listOf(TIP_1, TIP_2, TIP_3, TIP_4, TIP_4)
+    const val TIME_TO_DESTROY_MAIN_OBJECTIVE = "<gray>The <red>attackers</red> will now have <aqua>60 seconds</aqua> to <red>destroy the main objective."
 }

@@ -37,6 +37,11 @@ class GameMap {
     fun removeSpawnPointBlocks() {
         defenderSpawns + attackerSpawns.forEach { spawn ->
             spawn.clone().subtract(0.5, 0.0, 0.5).block.type = Material.AIR
+
+            val blockAbove = spawn.clone().add(0.0, 1.0, 0.0).block
+            if (blockAbove.type != Material.AIR) blockAbove.type = Material.AIR
+
+
         }
     }
 

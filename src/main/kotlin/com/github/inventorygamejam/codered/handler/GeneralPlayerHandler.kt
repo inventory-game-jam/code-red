@@ -19,7 +19,7 @@ object GeneralPlayerHandler : Listener {
     fun onJoin(event: PlayerJoinEvent) {
         val player = event.player
         player.sendPack()
-        var team = apiTeams.find { team -> player.uniqueId in team.players.map(APIPlayer::uuid) }
+        val team = apiTeams.find { team -> player.uniqueId in team.players.map(APIPlayer::uuid) }
 
         if (team == null) return
         val gameTeam = gameTeams.find { gameTeam -> gameTeam.name == team.name }
@@ -29,5 +29,8 @@ object GeneralPlayerHandler : Listener {
         }
         gameTeam.uuids.add(player.uniqueId)
         CodeRed.logger.info("Player ${player.name} from team ${team.name} joined")
+
+        player.inventory.clear()
+        player.clearActivePotionEffects()
     }
 }

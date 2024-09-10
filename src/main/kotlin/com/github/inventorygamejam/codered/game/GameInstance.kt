@@ -3,6 +3,7 @@ package com.github.inventorygamejam.codered.game
 import com.github.inventorygamejam.codered.CodeRed
 import com.github.inventorygamejam.codered.matchmaking.Matchmaker
 import com.github.inventorygamejam.codered.team.GameTeam
+import com.github.inventorygamejam.codered.util.runTaskRepeating
 import org.bukkit.Bukkit
 import kotlin.random.Random
 import com.github.inventorygamejam.codered.util.unregister
@@ -55,15 +56,15 @@ class GameInstance(private val teamsCount: Int) {
         gamesToRun.forEach { (teamsPair, hasPlayedAlready) ->
             if (hasPlayedAlready) return@forEach
 
-            Bukkit.getScheduler().runTaskTimer(CodeRed, { task ->
+            runTaskRepeating {
                 if (gamesToRun[teamsPair] == true) {
-                    task.cancel()
-                    return@runTaskTimer
+                    cancel()
+                    return@runTaskRepeating
                 }
 
                 val (teamOne, teamTwo) = teamsPair
-                val isTeamOneRunning = teams[teamOne] ?: return@runTaskTimer
-                val isTeamTwoRunning = teams[teamTwo] ?: return@runTaskTimer
+                val isTeamOneRunning = teams[teamOne] ?: return@runTaskRepeating
+                val isTeamTwoRunning = teams[teamTwo] ?: return@runTaskRepeating
 
                 if (!isTeamOneRunning && !isTeamTwoRunning) {
                     val isTeamOneDefending = Random.nextBoolean()
@@ -77,7 +78,7 @@ class GameInstance(private val teamsCount: Int) {
 
                     Matchmaker.matchGenerator.startMatch(match)
                 }
-            }, 0, 1)
+            }
         }
     }
 
