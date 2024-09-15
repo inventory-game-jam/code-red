@@ -7,5 +7,5 @@ data class GameMapConfig(
     val attackerSpawnPoints: List<DirectionedPrecisePoint>,
     val defenderSpawnPoints: List<DirectionedPrecisePoint>,
     val vaultLocation: BlockPoint,
-    val lootItems: List<DirectionedPrecisePoint>,
+    val corners: List<BlockPoint>
 )

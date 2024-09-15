@@ -2,7 +2,6 @@ package com.github.inventorygamejam.codered.team
 
 import com.github.inventorygamejam.codered.item.gun.GunTypes
 import com.github.inventorygamejam.codered.util.BasicRegistry
-import com.github.inventorygamejam.codered.util.editItemMeta
 import com.github.inventorygamejam.codered.util.editItemMetaSpecific
 import com.github.inventorygamejam.codered.util.withDestroyables
 import com.github.inventorygamejam.codered.util.withName
@@ -24,7 +23,7 @@ object PlayerRoles : BasicRegistry<PlayerRole>() {
         "assaulter",
         PlayerRole(
             ItemStack.of(Material.IRON_SWORD).withName("<red>Assaulter"),
-            Items.LEATHER_ARMOR, listOf(Items.M16)
+            Items.LEATHER_ARMOR, listOf(Items.M16, Items.TNT)
         )
     )
     val MEDIC = register(
@@ -66,7 +65,6 @@ object PlayerRoles : BasicRegistry<PlayerRole>() {
         val BOW = ItemStack.of(Material.BOW).withUnbreakable()
         val SMALL_ARROWS = ItemStack.of(Material.ARROW, 2)
         val ARROWS = ItemStack.of(Material.ARROW, 8)
-        val AIR = ItemStack.of(Material.AIR)
         val PICKAXE = ItemStack.of(Material.STONE_PICKAXE)
             .withDestroyables(Material.LIGHT_BLUE_STAINED_GLASS, Material.BLUE_WOOL)
             .withUnbreakable()

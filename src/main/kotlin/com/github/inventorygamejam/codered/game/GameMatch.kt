@@ -37,22 +37,16 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
+import org.bukkit.util.BoundingBox
 import java.time.Duration.ofMillis
 import java.time.Duration.ofSeconds
+import kotlin.math.roundToInt
+import kotlin.random.Random
 
 class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
     val map = GameMap()
     val teamVault: TeamVault
-    val lootItems = mutableListOf(
-        LootItem(
-            map.attackerSpawns.last().clone().add(1.0, 3.0, 3.0),
-            ItemStack.of(Material.DIAMOND_SWORD)
-        ),
-        LootItem(
-            map.attackerSpawns.last().clone().add(1.0, 3.0, 0.0),
-            ItemStack.of(Material.NETHERITE_SWORD)
-        )
-    )
+    val lootItems: MutableList<LootItem>
     val lootItemHandler = LootItemHandler(this)
     val teamVaultHandler = TeamVaultHandler(this)
     val gameHandler = GameHandler(this)
@@ -72,6 +66,17 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
         map.removeSpawnPointBlocks()
 
         teamVault = TeamVault(defendingTeam, map.vaultLocation)
+
+        lootItems = buildList {
+            repeat(LOOT_ITEM_AMOUNT) {
+                val location = findLootItemPosition()
+                location.yaw = 0f
+                location.pitch = -90f
+                val item = Material.IRON_INGOT
+
+                add(LootItem(location, ItemStack.of(item)))
+            }
+        }.toMutableList()
 
         players.forEach { player ->
             player.gameMode = ADVENTURE
@@ -264,5 +269,29 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
         player.gameMode = ADVENTURE
         if (isDefender(player)) return
         player.addPotionEffect(PotionEffect(PotionEffectType.MINING_FATIGUE, -1, 2, false, false, false))
+    }
+
+    fun findLootItemPosition(): Location {
+        val corner1 = map.corners.first()
+        val corner2 = map.corners.last()
+        val box = BoundingBox(corner1.x, corner1.y, corner1.z, corner2.x, corner2.y, corner2.z)
+        val size = (box.widthX * box.widthZ).roundToInt()
+
+        for (i in 0 until size) {
+            val x = Random.nextInt(box.minX.roundToInt(), box.maxX.roundToInt())
+            val y = box.minY.roundToInt()
+            val z = Random.nextInt(box.minZ.roundToInt(), box.maxZ.roundToInt())
+
+            val location = Location(map.world, x.toDouble(), y.toDouble(), z.toDouble())
+            if (location.clone().add(0.0, 1.0, 0.0).block.type == Material.AIR) {
+                return location.add(0.0, 1.1, 0.0)
+            }
+        }
+
+        error("Could not find a suitable loot item position after $size tries")
+    }
+
+    companion object {
+        const val LOOT_ITEM_AMOUNT = 12
     }
 }

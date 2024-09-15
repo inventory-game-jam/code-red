@@ -18,6 +18,7 @@ class GameMap {
     val attackerSpawns = gameMapConfig.attackerSpawnPoints.map { point -> point.location().add(0.5, 0.0, 0.5) }
     val defenderSpawns = gameMapConfig.defenderSpawnPoints.map { point -> point.location().add(0.5, 0.0, 0.5) }
     val vaultLocation = gameMapConfig.vaultLocation.location()
+    val corners = gameMapConfig.corners.map { point -> point.location() }
 
     fun init() {
         mapSchematic.paste(BukkitAdapter.adapt(world), BlockVector3.ZERO.add(0, 128, 0))

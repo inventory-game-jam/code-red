@@ -11,7 +11,7 @@ data class LootItem(val location: Location, val item: ItemStack, var isCollected
         val transformation = itemDisplay.transformation
         transformation.scale.set(0.5, 0.5, 0.5)
         itemDisplay.transformation = transformation
-        itemDisplay.billboard = Display.Billboard.CENTER
+        itemDisplay.billboard = Display.Billboard.FIXED
         itemDisplay.setItemStack(item)
     }
     val interaction = location.world.spawn(location, Interaction::class.java) { interaction ->
