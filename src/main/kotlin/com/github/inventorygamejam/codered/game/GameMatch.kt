@@ -3,6 +3,7 @@
 package com.github.inventorygamejam.codered.game
 
 import com.github.inventorygamejam.codered.game.map.GameMap
+import com.github.inventorygamejam.codered.gui.PlayerRoleSelection
 import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredFonts
 import com.github.inventorygamejam.codered.gui.resourcepack.RegisteredSprites
 import com.github.inventorygamejam.codered.handler.MainObjectiveBuildHandler.MAIN_OBJECTIVE_TAG_KEY
@@ -117,7 +118,23 @@ class GameMatch(val defendingTeam: GameTeam, val attackingTeam: GameTeam) {
             broadcast(Messages.TIPS.random())
         }
 
-        runTask(20 * 10) {
+        runTask(20 * 5) {
+            players.forEach { player ->
+                PlayerRoleSelection.open(player)
+            }
+        }
+
+        runTask(20 * 15) {
+            players.forEach { player ->
+                player.gameMode = ADVENTURE
+                player.inventory.clear()
+                player.health = 20.0
+                player.saturation = 10f
+                player.foodLevel = 20
+
+                PlayerRoleManager[player]?.equipItems(player)
+            }
+
             var countdown = 5
             runTaskRepeating(period = 20) {
                 val timings = times(ofMillis(250), ofSeconds(1), ofMillis(250))

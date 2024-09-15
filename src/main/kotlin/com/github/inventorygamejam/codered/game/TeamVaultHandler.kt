@@ -25,10 +25,10 @@ class TeamVaultHandler(val match: GameMatch) : Listener {
         val block = event.clickedBlock ?: return
         if (!block.location.isOther(match.teamVault.location)) return
         val item = event.item ?: return
-        val lootItem = match.lootItems.find { lootItem -> lootItem.item == item && !lootItem.isCollected } ?: return
+        val lootItem = match.lootItems.find { lootItem -> lootItem.item.type == item.type && !lootItem.isCollected } ?: return
         lootItem.isCollected = true
         match.teamVault.items.add(item)
-        event.player.inventory.removeSingle(item)
+        item.amount--
         event.player.sendRichMessage(Messages.ITEM_INSERTED)
 
         if (match.lootItems.all { lootItem -> lootItem.isCollected }) match.codeYellow()

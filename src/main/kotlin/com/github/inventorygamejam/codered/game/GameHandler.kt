@@ -18,6 +18,9 @@ class GameHandler(val match: GameMatch) : Listener {
     @EventHandler
     fun onDamage(event: EntityDamageByEntityEvent) {
         if (event.entity.world != match.map.world) return
+
+        if (!match.hasStarted) event.isCancelled = true
+
         val player = event.entity as? Player ?: return
 
         if (event.damager.uniqueId !in BulletHandler.uuids) return
